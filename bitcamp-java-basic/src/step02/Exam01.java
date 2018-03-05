@@ -1,3 +1,5 @@
+//패키지 테스트용
+// -step01/Exam01.java 관련 예제이다.
 package step02;
 
 public class Exam01 {
