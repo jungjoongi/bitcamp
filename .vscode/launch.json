@@ -1,0 +1,185 @@
+{
+    // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
+    // 기존 특성에 대한 설명을 보려면 가리킵니다.
+    // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam01",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Exam01",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-App",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "bitcamp.java106.pms.App",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam01(1)",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam01",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam02",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam02",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam03",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam03",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam04",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam04",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam05_1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam05_1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam05_2",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam05_2",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam05_3",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam05_3",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam05_4",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam05_4",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam06_1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam06_1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam06_2",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam06_2",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam06_3",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam06_3",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam07_1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam07_1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam08_1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam08_1",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-Exam08_2",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "step01.Exam08_2",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-test01",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "test01",
+            "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Debug (Attach)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 0
+        }
+    ]
+}
