@@ -1,0 +1,73 @@
+package step02.assignment;
+
+import java.util.Scanner;
+
+class Test02 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String name1, name2, name3, name4, name5;
+        int score1, score2, score3, score4, score5, score6; 
+        int score7, score8, score9, score10, score11, score12;
+        int score13, score14, score15, sum1, sum2, sum3, sum4, sum5;
+        float average1, average2, average3, average4, average5;
+
+        System.out.print("입력? ");
+        name1 = sc.next();
+        score1 = sc.nextInt();
+        score2 = sc.nextInt();
+        score3 = sc.nextInt();
+        
+        System.out.print("입력? ");
+        name2 = sc.next();
+        score4 = sc.nextInt();
+        score5 = sc.nextInt();
+        score6 = sc.nextInt();
+        
+        System.out.print("입력? ");
+        name3 = sc.next();
+        score7 = sc.nextInt();
+        score8 = sc.nextInt();
+        score9 = sc.nextInt();
+
+        System.out.print("입력? ");
+        name4 = sc.next();
+        score10 = sc.nextInt();
+        score11 = sc.nextInt();
+        score12 = sc.nextInt();
+
+        System.out.print("입력? ");
+        name5 = sc.next();
+        score13 = sc.nextInt();
+        score14 = sc.nextInt();
+        score15 = sc.nextInt();
+
+        sum1 = score1 + score2 + score3;
+        sum2 = score4 + score5 + score6;
+        sum3 = score7 + score8 + score9;
+        sum4 = score10 + score11 + score12;
+        sum5 = score13 + score14 + score15;
+
+        average1 = sum1/3.0f;
+        average2 = sum2/3.0f;
+        average3 = sum3/3.0f;
+        average4 = sum4/3.0f;
+        average5 = sum5/3.0f;
+
+
+        System.out.println(name1+" "+score1+" "+score2 +" "+ score3+
+        " "+sum1+" "+average1);
+        System.out.println(name2+" "+score4+" "+score5 +" "+ score6+
+        " "+sum2+" "+average2);
+        System.out.println(name3+" "+score7+" "+score8 +" "+ score9+
+        " "+sum3+" "+average3);
+        System.out.println(name4+" "+score10+" "+score11 +" "+ score12+
+        " "+sum4+" "+average4);
+        System.out.println(name5+" "+score13+" "+score14 +" "+ score15+
+        " "+sum5+" "+average5);
+
+        
+
+
+
+    }
+}
