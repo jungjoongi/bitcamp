@@ -1,8 +1,8 @@
 package bitcamp.java106.pms;
 public class Project{
-    String name;
-    String what;
-    String many;
-    String startDate;
-    String endDate;
+    public String name;
+    public String what;
+    public String many;
+    public String startDate;
+    public String endDate;
 }
