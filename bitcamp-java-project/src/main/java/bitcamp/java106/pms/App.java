@@ -7,11 +7,12 @@ public class App{
         String help, view;
         Team[] teams = new Team[100];
         Member[] members = new Member[100];
-        int i, ii, iii;
+        int i, ii;
         int count1 = 0;
         int count2 = 0;
        
         for(;;){
+            System.out.print("명령>");
 
             help = sc.nextLine();
             if(help.toLowerCase().equals("help")) {
@@ -57,18 +58,18 @@ public class App{
             }
     
             else if(help.toLowerCase().equals("member/add")) {
-                for(iii = count2; iii < members.length ; ){
+                for(ii = count2; ii < members.length ; ){
                     ++count2;
-                    members[iii] = new Member();
+                    members[ii] = new Member();
     
                     System.out.println("아이디? ");
-                    members[iii].id = sc.nextLine();
+                    members[ii].id = sc.nextLine();
                     
                     System.out.println("이메일? ");
-                    members[iii].email = sc.nextLine();
+                    members[ii].email = sc.nextLine();
                     
                     System.out.println("암호? ");
-                    members[iii].pw = sc.nextLine();
+                    members[ii].pw = sc.nextLine();
                         
                         break;
                     }
@@ -81,8 +82,19 @@ public class App{
                 }
             }
 
+            else if(help.toLowerCase().equals("member/view okok")) {
+                System.out.print("해당 아이디의 회원이 없습니다.");
+          
+            }else if(help.toLowerCase().equals("member/view")) {
+                System.out.println("아이디를 입력하시기 바랍니다.");
+            }
+
             else if(help.toLowerCase().equals("quit")){
                 break;
+            }
+            else{
+                System.out.println("명령어가 올바르지 않습니다.");
+            
         }
     }
         
