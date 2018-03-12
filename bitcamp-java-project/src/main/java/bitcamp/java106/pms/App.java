@@ -1,103 +1,89 @@
 package bitcamp.java106.pms;
 import java.util.Scanner;
 
-public class App{
+class App {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String help, view;
-        Team[] teams = new Team[100];
-        Member[] members = new Member[100];
-        int i, ii;
-        int count1 = 0;
-        int count2 = 0;
-       
-        for(;;){
-            System.out.print("명령>");
-
-            help = sc.nextLine();
-            if(help.toLowerCase().equals("help")) {
-                System.out.println("팀 등록 명령 : team/add");
-                System.out.println("팀 조회 명령 : team/list");
-                System.out.println("팀 상세조회 명령 : team/view");
-                System.out.println("회원 등록 명령 : member/add");
-                System.out.println("회원 조회 명령 : memver/list");
-                System.out.println("회원 상세 조회 명령 : member/view");
-                System.out.println("종료 : quit");
-            }
-            else if(help.toLowerCase().equals("team/add")) {
-                for(i = count1; i < teams.length ; ){
-                    ++count1;
-                    teams[i] = new Team();
-                    System.out.println("팀명? ");
-                    teams[i].name = sc.nextLine();
-                    
-                    System.out.println("설명? ");
-                    teams[i].what = sc.nextLine();
-                    
-                    System.out.println("최대인원? ");
-                    teams[i].max = sc.nextLine();
-                    
-                    System.out.println("시작일? ");
-                    teams[i].startDate = sc.nextLine();
-                    
-                    System.out.println("종료일? ");
-                    teams[i].endDate = sc.nextLine();
-                    break;
-                }
-            }else if(help.toLowerCase().equals("team/list")) {
-                for(int b = 0 ; b < count1 ; b++ ) {
-                    System.out.printf("%s, %s, %s ~ %s %n",
-                        teams[b].name, teams[b].max, teams[b].startDate, teams[b].endDate);
-                }
-            }
-            else if(help.toLowerCase().equals("team/view 비트오케이")) {
-                System.out.print("해당 이름의 팀이 없습니다.");
-          
-            }else if(help.toLowerCase().equals("member")) {
-                System.out.println("팀명을 입력하시기 바랍니다.");
-            }
-    
-            else if(help.toLowerCase().equals("member/add")) {
-                for(ii = count2; ii < members.length ; ){
-                    ++count2;
-                    members[ii] = new Member();
-    
-                    System.out.println("아이디? ");
-                    members[ii].id = sc.nextLine();
-                    
-                    System.out.println("이메일? ");
-                    members[ii].email = sc.nextLine();
-                    
-                    System.out.println("암호? ");
-                    members[ii].pw = sc.nextLine();
-                        
-                        break;
-                    }
-            }
-    
-            else if(help.toLowerCase().equals("member/list")) {
-                for(int a = 0; a < count2 ; a++ ) {
-                    System.out.printf("%s, %s, %s %n",
-                        members[a].id, members[a].email, members[a].pw);
-                }
+        Scanner keyScan = new Scanner(System.in);
+        Team[] teams = new Team[1000];
+        int teamIndex = 0;
+        
+        
+        while (true) {
+            System.out.print("명령> ");
+            String[] arr = keyScan.nextLine().toLowerCase().split(" ");
+            String menu = arr[0];
+            String option = null; // 문자열 없음!
+            if (arr.length == 2) {
+                option = arr[1];
             }
 
-            else if(help.toLowerCase().equals("member/view okok")) {
-                System.out.print("해당 아이디의 회원이 없습니다.");
-          
-            }else if(help.toLowerCase().equals("member/view")) {
-                System.out.println("아이디를 입력하시기 바랍니다.");
-            }
 
-            else if(help.toLowerCase().equals("quit")){
+            if (menu.equals("quit")) {
+                System.out.println("안녕히 가세요!");
                 break;
+            }else if (menu.equals("help")) {
+                System.out.println("[도움말]");
+                System.out.println("team/add");
+                System.out.println("team/list");
+                System.out.println("team/view 팀명");
+                System.out.println("member/add");
+                System.out.println("member/list");
+                System.out.println("member/view 아이디");
+                System.out.println("quit");
+            } else if (menu.equals("team/add")) {
+                System.out.println("[팀 정보 입력]");
+                Team team = new Team();
+
+                System.out.print("팀명? ");
+                team.name = keyScan.nextLine();
+
+                System.out.print("설명? ");
+                team.what = keyScan.nextLine();
+
+                System.out.print("최대인원? ");
+                team.max = keyScan.nextLine();
+
+                System.out.print("시작일? ");
+                team.startDate = keyScan.nextLine();
+
+                System.out.print("종료일? ");
+                team.endDate = keyScan.nextLine();
+
+                teams[teamIndex++] = team;
+        
+
+                
+            } else if (menu.equals("team/list")) {
+                 System.out.println("[팀 목록]");
+                for (int i = 0; i < teamIndex; i++) {
+                    System.out.printf("%s, %s, %s ~ %s%n",
+                    teams[i].name, teams[i].max,
+                    teams[i].startDate, teams[i].endDate);
+                    
+                }
+            } else if (menu.equals("team/view")) {
+                System.out.println("[팀 정보 조회]");
+                if (option == null) {
+                System.out.println("팀명을 입력하시기 바랍니다.");
+                System.out.println();
+                continue;
+                }
+
+                for(int i = 0;  i < teamIndex; i++) {
+                    if (option.equals(teams[i].name.toLowerCase())) {
+                        System.out.printf("팀명: %s%n", teams[i].name);
+                        System.out.printf("설명: %s%n", teams[i].what);
+                        System.out.printf("최대인원: %s%n", teams[i].max);
+                        System.out.printf("기간: %s%n",
+                            teams[i].startDate, teams[i].endDate);
+                        
+                    }
+                }
+                System.out.println(option);
             }
-            else{
-                System.out.println("명령어가 올바르지 않습니다.");
+            System.out.println();
             
         }
-    }
-        
+
     }
 }
-
