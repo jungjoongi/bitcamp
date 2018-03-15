@@ -3,6 +3,7 @@ package bitcamp.java106.pms;
 import bitcamp.java106.pms.util.Console;
 import bitcamp.java106.pms.controller.TeamController;
 import bitcamp.java106.pms.controller.MemberController;
+import bitcamp.java106.pms.controller.BoardController;
 import java.util.Scanner;
 
 
@@ -28,15 +29,25 @@ public class App {
         System.out.println("팀 등록 명령 : team/add");
         System.out.println("팀 조회 명령 : team/list");
         System.out.println("팀 상세조회 명령 : team/view 팀명");
+        System.out.println("팀 변경 : team/update 팀명");
+        System.out.println("팀 삭제 : team/delete 팀명");
         System.out.println("회원 등록 명령 : member/add");
         System.out.println("회원 조회 명령 : member/list");
         System.out.println("회원 상세조회 명령 : member/view 아이디");
+        System.out.println("회원 변경 : member/update 아이디");
+        System.out.println("회원 삭제 : member/delete 아이디");
+        System.out.println("게시글 등록 : board/add");
+        System.out.println("게시글 목록 : board/list");
+        System.out.println("게시글 조회 : board/view 게시글");
+        System.out.println("게시글 변경 : board/update 게시글");
+        System.out.println("게시글 변경 : board/delete 게시글");
         System.out.println("종료 : quit");
     }
 
     public static void main(String[] args) {
         TeamController.keyScan = keyScan;
         MemberController.keyScan = keyScan;
+        BoardController.keyScan = keyScan;
         Console.keyScan = keyScan;
         while (true) {
             String[] arr = Console.prompt();
@@ -57,7 +68,9 @@ public class App {
                 TeamController.service(menu, option);
             } else if (menu.startsWith("member/")){
                 MemberController.service(menu, option);
-            }  else {
+            } else if (menu.startsWith("board/")){
+                BoardController.service(menu, option);
+            } else {
                 System.out.println("명령어가 올바르지 않습니다.");
             }
 
