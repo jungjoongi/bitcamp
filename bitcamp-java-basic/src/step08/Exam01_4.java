@@ -20,6 +20,7 @@ public class Exam01_4 {
         Student.count++;
         
         Student s2 = new Student();
+        
         s2.name = "임꺽정";
         s2.age = 20;
         Student.count++;
