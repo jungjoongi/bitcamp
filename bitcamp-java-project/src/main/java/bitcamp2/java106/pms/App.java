@@ -1,5 +1,7 @@
+
 package bitcamp2.java106.pms;
 import bitcamp.java106.pms.domain.Team;
+
 import java.util.Scanner;
 
 public class App {
@@ -8,14 +10,35 @@ public class App {
     static int teamIndex = 0;
     static String option = null;
     static Scanner keyScan = new Scanner(System.in);
-    static Object staticFieldObject;
+
+    static boolean confirm(String message) {
+        System.out.printf("%s (y/N)", message);
+        String input = keyScan.nextLine().toLowerCase();
+        if (input.equals("y")) 
+            return true;
+        else
+            return false;
+    }
+
+    static int getTeamIndex(String name) {
+        for (int i = 0; i < teamIndex; i++) {
+            if (teams[i] == null) continue;
+            if (name.equals(teams[i].name.toLowerCase())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
     static String[] prompt() {
         System.out.print("명령> ");           
         return keyScan.nextLine().toLowerCase().split(" ");
     }
+
     static void onQuit() {
         System.out.println("안녕히 가세요!");
     }
+
     static void onHelp() {
         System.out.println("[도움말]");
         System.out.println("팀 등록 명령 : team/add");
@@ -36,7 +59,7 @@ public class App {
         System.out.println("종료 : quit");
     }
     
-    int i = 2;
+    
     static void onTeamAdd() {
         System.out.println("[팀 정보 입력]");
         Team team = new Team();
@@ -75,7 +98,10 @@ public class App {
 
         if (option == null) {
             System.out.println("팀명을 입력해주세요!");
+            return;
+
         } else  {
+            Team team = null;
             for (int i = 0 ; i < teamIndex ; i++) {
                 if (option.equals(teams[i].name)) {
                     System.out.printf("팀명 :%s%n", teams[i].name);
@@ -83,14 +109,14 @@ public class App {
                     System.out.printf("최대인원 :%s%n", teams[i].maxQty);
                     System.out.printf("기간 :%s ~ %s%n", teams[i].startDate, teams[i].endDate);
                     
+                    team = teams[i];
                     break;
-                } else {
-                    System.out.println("해당 팀 이름이 없습니다.");
-                    
-                }
+                } 
+            }if (team == null) {
+                System.out.println("해당 팀 이름이 없습니다.");
+                
             }
         }
-
     }
 
     static void onTeamUpdate() {
@@ -134,20 +160,22 @@ public class App {
 
         if (option == null) {
             System.out.println("팀명을 입력해주세요!");
-        } else {
-            Team deleteTeam = new Team();
-            for (int i = 0 ; i < teamIndex ; i++) {
-                if (option.equals(teams[i].name)) {
-                     System.out.println("정말로 삭제하시겠습니까? y/N");
-                        if (delete.equals("y")) {
-                            deleteTeam = null;
-                            teams[i] = deleteTeam;
-                        } else {
-                            continue;
-                            
-                        }
-                }
-            }
+            return;
+        }
+
+        int i = getTeamIndex(option);
+
+        if (i == -1) {
+            System.out.println("해당 이름의 팀이 없습니다.");
+        }
+         else {
+            if (confirm("정말 삭제하시겠습니까?")) {
+                            teams[i] = null;
+                            System.out.println("삭제하였습니다.");
+                        } 
+                        
+                
+            
         }
 
     }
@@ -165,6 +193,7 @@ public class App {
             if (prompt.equals("quit")) {
                 onQuit();
                 break;
+            
             } else if (prompt.equals("help")) {
                 onHelp();
                 
@@ -185,14 +214,6 @@ public class App {
             } else if (prompt.equals("team/delete")) {
                 onTeamDelete();
             }
-
-            
-            
-            
-            
-            
-            
         }
-    
     }
 }
