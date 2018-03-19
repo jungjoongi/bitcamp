@@ -1,6 +1,8 @@
 package bitcamp.java106.pms.controller;
 import bitcamp.java106.pms.domain.Board;
 import bitcamp.java106.pms.util.Console;
+
+import java.security.Provider.Service;
 import java.util.Scanner;
 
 public class BoardController {
@@ -24,15 +26,20 @@ public class BoardController {
         }
     }
 
+    
+    
     static int getBoardIndex(String name) {
+        int number = Integer.parseInt(name);
         for (int i = 0; i < boardIndex; i++) {
             if (boards[i] == null) continue;
-            if (name.equals(boards[i].title.toLowerCase())) {
+            if (number == i) {
                 return i;
             }
         }
         return -1;
     }
+
+
     static void onBoardAdd() {
         System.out.println("[팀 정보 입력]");
         Board board = new Board();
@@ -46,6 +53,7 @@ public class BoardController {
         System.out.print("등록일? ");
         board.date = keyScan.nextLine();
         
+        board.arrnum = boardIndex;
         // 팀 정보가 담겨있는 객체의 주소를 배열에 보관한다.
         boards[boardIndex++] = board;
     }
@@ -79,7 +87,7 @@ public class BoardController {
     }
 
     static void onBoardUpdate(String name) {
-        System.out.println("게시글 변경]");
+        System.out.println("[게시글 변경]");
         if (name == null) {
             System.out.println("팀명을 입력하시기 바랍니다.");
             return;
