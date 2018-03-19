@@ -1,6 +1,5 @@
 package bitcamp2.java106.pms;
 import bitcamp.java106.pms.domain.Team;
-
 import java.util.Scanner;
 
 public class App {
@@ -9,16 +8,14 @@ public class App {
     static int teamIndex = 0;
     static String option = null;
     static Scanner keyScan = new Scanner(System.in);
-    
+    static Object staticFieldObject;
     static String[] prompt() {
         System.out.print("명령> ");           
         return keyScan.nextLine().toLowerCase().split(" ");
     }
-
     static void onQuit() {
         System.out.println("안녕히 가세요!");
     }
-
     static void onHelp() {
         System.out.println("[도움말]");
         System.out.println("팀 등록 명령 : team/add");
@@ -39,7 +36,7 @@ public class App {
         System.out.println("종료 : quit");
     }
     
-    
+    int i = 2;
     static void onTeamAdd() {
         System.out.println("[팀 정보 입력]");
         Team team = new Team();
@@ -147,6 +144,7 @@ public class App {
                             teams[i] = deleteTeam;
                         } else {
                             continue;
+                            
                         }
                 }
             }
@@ -167,7 +165,6 @@ public class App {
             if (prompt.equals("quit")) {
                 onQuit();
                 break;
-            
             } else if (prompt.equals("help")) {
                 onHelp();
                 
