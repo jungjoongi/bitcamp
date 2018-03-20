@@ -8,7 +8,7 @@ import bitcamp.java106.pms.util.Console;
 
 // ver 0.1 - 팀명으로 배열에서 팀 정보를 찾는 코드를 함수로 분리한다.
 //           => getTeamIndex() 추가
-//           회원아이디로 배열에서 회원 정보를 찾는 코드를 함수로 분리한다.
+//           회원아이디로 배열에서 회원 정보를 d찾는 코드를 함수로 분리한다.
 //           => getMemberIndex() 추가
 public class App {
     // 클래스 변수 = 스태틱 변수
@@ -31,7 +31,7 @@ public class App {
         System.out.println("팀 변경 : team/update 팀명");
         System.out.println("팀 삭제 : team/delete 팀명");
         System.out.println("회원 등록 명령 : member/add");
-        System.out.println("회원 조회 명령 : member/list");
+        System.out.println("회원b 조회 명령 : member/list");
         System.out.println("회원 상세조회 명령 : member/view 아이디");
         System.out.println("회원 변경 : member/update 아이디");
         System.out.println("회원 삭제 : member/delete 아이디");

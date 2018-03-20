@@ -22,20 +22,20 @@ public class ExamY_5 {
         // -> 인스턴스 메서드를 사용하면 파라미터로 메모리 주소를 전달할 필요가 없다.
         
         // 식1과 식2를 개별적으로 동시에 진행할 수 없다.
-        c1.plus(c1, 2);
-        c2.plus(c2, 3); 
+        c1.plus(2);
+        c2.plus(3); 
      
-        c1.plus(c1, 3);
-        c2.multiple(c2, 2);
+        c1.plus(3);
+        c2.multiple(2);
         
-        c1.minus(c1, 1);
-        c2.plus(c2, 7);
+        c1.minus(1);
+        c2.plus(7);
         
-        c1.multiple(c1, 7);
-        c2.divide(c2, 4);
+        c1.multiple(7);
+        c2.divide(4);
         
-        c1.divide(c1, 3);
-        c2.minus(c2, 5);
+        c1.divide(3);
+        c2.minus(5);
 
         System.out.printf("result = %d\n", c1.result);
         System.out.printf("result = %d\n", c2.result);
