@@ -5,4 +5,3 @@ public class Exam05 {
 }
 class G {}
 
-// javac -encoding utf8 -d ./bin ./src/Exam05.java

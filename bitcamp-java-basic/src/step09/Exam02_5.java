@@ -1,37 +1,39 @@
 // 인스턴스 메서드와 클래스 메서드의 활용 - Calendar 클래스
 package step09;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Exam02_5 {
 
     public static void main(String[] args) throws Exception {
-        Date d1 = new Date();
+
+        // 오눌 날짜 및 시간 정보를 저장한 객체를 만들어 리턴한다.
+        // 달력은 그레고리안 달력을 사용한다.
+        Calendar c = Calendar.getInstance();
+        
         // 인스턴스 메서드 활용
-        System.out.println(d1.getYear() + 1900);
-        System.out.println(d1.getMonth()+ 1);
-        System.out.println(d1.getDate());
+        System.out.println(c.get(1)); // 년도
+        System.out.println(c.get(2) + 1); // 월
+        System.out.println(c.get(5)); // 일
+        System.out.println(c.get(7)); // 요일 (1 ~ 7)
+        System.out.println(c.get(4)); // 그 달의 몇번째 주
+        System.out.println(c.get(10)); // 시 0 - 11
+        System.out.println(c.get(11)); // 시 24시간
+        System.out.println(c.get(12)); // 초
+        System.out.println(c.get(13)); // 초
         
-        // 스태틱 메서드 활용
-        long millis = Date.parse("Sat, 12 Aug 1995 13:13:30 GMT");
-        System.out.println(millis);
+        // 상수의 활용
         
-        // 실무에서는 java.util.Date대신 이 클래스의 자식 클래스인
-        // java.sqp.Date를 쓰기도 한다.
-        // 이 클래스는 날짜 데이터를 문자열로 다룰 때yyyy-mm-dd 형식으로 다룬다.
+        System.out.println(c.get(Calendar.YEAR)); // 년도
+        System.out.println(c.get(Calendar.MONTH) + 1); // 월
+        System.out.println(c.get(Calendar.DATE)); // 일
+        System.out.println(c.get(Calendar.DAY_OF_WEEK)); // 요일 (1 ~ 7)
+        System.out.println(c.get(Calendar.WEEK_OF_MONTH)); // 그 달의 몇번째 주
+        System.out.println(c.get(Calendar.HOUR)); // 시 0 - 11
+        System.out.println(c.get(Calendar.HOUR_OF_DAY)); // 시 24시간
+        System.out.println(c.get(Calendar.MINUTE)); // 분
+        System.out.println(c.get(Calendar.SECOND)); // 초
         
-        long currMillis = System.currentTimeMillis();
-        
-        // 생성자 활용
-        java.sql.Date today = new java.sql.Date(currMillis);
-        
-        // 인스턴스 데이터 사용
-        String str = today.toString();
-        System.out.println(str);
-        
-        // 스태틱 메서드 활용
-        java.sql.Date d = java.sql.Date.valueOf("2018-03-21");
-        System.out.println(d);
     }
 
 }
