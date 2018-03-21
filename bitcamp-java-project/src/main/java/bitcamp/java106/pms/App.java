@@ -1,24 +1,19 @@
 package bitcamp.java106.pms;
 
 import java.util.Scanner;
+
 import bitcamp.java106.pms.controller.BoardController;
 import bitcamp.java106.pms.controller.MemberController;
 import bitcamp.java106.pms.controller.TeamController;
 import bitcamp.java106.pms.util.Console;
 
-// ver 0.1 - 팀명으로 배열에서 팀 정보를 찾는 코드를 함수로 분리한다.
-//           => getTeamIndex() 추가
-//           회원아이디로 배열에서 회원 정보를 d찾는 코드를 함수로 분리한다.
-//           => getMemberIndex() 추가
+// ver 0.2 - member 메뉴를 처리하는 코드를 관련 클래스인 MemberController로 옮긴다.
+// ver 0.1 - team 메뉴를 처리하는 코드를 TeamController로 옮긴다.
 public class App {
-    // 클래스 변수 = 스태틱 변수
-    // => 클래스 안에서 어디에서나 사용할 수 있는 변수이다.
     static Scanner keyScan = new Scanner(System.in);
-    
-    // 클래스 변수는 이 클래스의 모든 메서드에서 사용할 수 있다.
-   
-    static String option = null; 
+    public static String option = null; 
 
+    
     static void onQuit() {
         System.out.println("안녕히 가세요!");
     }
@@ -28,26 +23,19 @@ public class App {
         System.out.println("팀 등록 명령 : team/add");
         System.out.println("팀 조회 명령 : team/list");
         System.out.println("팀 상세조회 명령 : team/view 팀명");
-        System.out.println("팀 변경 : team/update 팀명");
-        System.out.println("팀 삭제 : team/delete 팀명");
         System.out.println("회원 등록 명령 : member/add");
-        System.out.println("회원b 조회 명령 : member/list");
+        System.out.println("회원 조회 명령 : member/list");
         System.out.println("회원 상세조회 명령 : member/view 아이디");
-        System.out.println("회원 변경 : member/update 아이디");
-        System.out.println("회원 삭제 : member/delete 아이디");
-        System.out.println("게시글 등록 : board/add");
-        System.out.println("게시글 목록 : board/list");
-        System.out.println("게시글 조회 : board/view 게시글");
-        System.out.println("게시글 변경 : board/update 게시글");
-        System.out.println("게시글 변경 : board/delete 게시글");
         System.out.println("종료 : quit");
     }
 
     public static void main(String[] args) {
-        TeamController.keyScan = keyScan;
-        MemberController.keyScan = keyScan;
-        BoardController.keyScan = keyScan;
+        // 클래스를 사용하기 전에 필수 값을 설정한다.
         Console.keyScan = keyScan;
+        BoardController boardcontroller = new BoardController(keyScan);
+        TeamController teamcontroller = new TeamController(keyScan);
+        MemberController membercontroller = new MemberController(keyScan);
+
         while (true) {
             String[] arr = Console.prompt();
 
@@ -63,13 +51,13 @@ public class App {
                 break;
             } else if (menu.equals("help")) {
                 onHelp();
-            } else if (menu.startsWith("team/")){
-                TeamController.service(menu, option);
-            } else if (menu.startsWith("member/")){
-                MemberController.service(menu, option);
-            } else if (menu.startsWith("board/")){
-                BoardController.service(menu, option);
-            } else {
+            } else if (menu.startsWith("team/")) {
+                teamcontroller.service(menu, option);
+            } else if (menu.startsWith("member/")) {
+                membercontroller.service(menu, option);
+            } else if (menu.startsWith("board/")) {
+                boardcontroller.service(menu, option);
+            }else {
                 System.out.println("명령어가 올바르지 않습니다.");
             }
 
