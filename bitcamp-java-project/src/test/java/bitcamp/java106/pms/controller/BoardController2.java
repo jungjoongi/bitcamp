@@ -5,7 +5,7 @@ import bitcamp.java106.pms.util.Console;
 import java.security.Provider.Service;
 import java.util.Scanner;
 
-public class BoardController {
+public class BoardController2 {
     public static Scanner keyScan;
     static Board[] boards = new Board[1000];
     static int boardIndex = 0;
@@ -44,7 +44,7 @@ public class BoardController {
         System.out.println("[게시글 정보 입력]");
         Board board = new Board();
 
-        System.out.print("제목? ");
+        System.out.print("제목? ");  
         board.title = keyScan.nextLine();
 
         System.out.print("내용? ");

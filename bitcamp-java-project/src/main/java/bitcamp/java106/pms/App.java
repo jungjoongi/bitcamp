@@ -14,11 +14,11 @@ public class App {
     public static String option = null; 
 
     
-    static void onQuit() {
-        System.out.println("안녕히 가세요!");
+    static void onQuit() { 
+        System.out.println("안녕히 가세요!");  
     }
 
-    static void onHelp() {
+    static void onHelp() { 
         System.out.println("[도움말]");
         System.out.println("팀 등록 명령 : team/add");
         System.out.println("팀 조회 명령 : team/list");
@@ -30,7 +30,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        // 클래스를 사용하기 전에 필수 값을 설정한다.
+        // 클래스를 사용하기 전에 필수 값을 설정한다.  
         Console.keyScan = keyScan;
         BoardController boardcontroller = new BoardController(keyScan);
         TeamController teamcontroller = new TeamController(keyScan);

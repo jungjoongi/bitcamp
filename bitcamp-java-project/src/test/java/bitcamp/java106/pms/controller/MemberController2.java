@@ -4,10 +4,10 @@ import bitcamp.java106.pms.util.Console;
 import bitcamp.java106.pms.domain.Member;
 import java.util.Scanner;
 
-public class MemberController {
+public class MemberController2 {
     // 이 클래스를 시용하려면 keyboard 스캐너가 있어야 한다.
     // 이 클래스를 사용하기 전에 스캐너를 설정하라!
-    public static Scanner keyScan;
+    public static Scanner keyScan; 
     static Member[] members = new Member[1000];
     static int memberIndex = 0;
 

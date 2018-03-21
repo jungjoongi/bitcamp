@@ -1,4 +1,4 @@
-// 이 클래스는 회원 관련 기능을 모두 둔 클래스이다.
+ // 이 클래스는 회원 관련 기능을 모두 둔 클래스이다.
 package bitcamp.java106.pms.controller;
 
 import bitcamp.java106.pms.domain.Member;
@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class MemberController {
     // 이 클래스를 사용하려면 keyboard 스캐너가 있어야 한다.
     // 이 클래스를 사용하기 전에 스캐너를 설정하라!
-    Scanner keyScan;
+    Scanner keyScan; 
     
     public MemberController (Scanner scanner) {
         this.keyScan = scanner;

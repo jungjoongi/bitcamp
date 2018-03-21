@@ -1,14 +1,16 @@
 // 팀 관련 기능을 모아 둔 클래스
 package bitcamp.java106.pms.controller;
 
-import bitcamp.java106.pms.domain.Team;
-import bitcamp.java106.pms.util.Console;
+import java.sql.Date;
 import java.util.Scanner;
 
-public class TeamController {
+import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.util.Console;
+
+public class TeamController { 
     // 이 클래스를 사용하기 전에 App 클래스에서 준비한 Scanner 객체를
     // keyScan 변수에 저장하라!
-     Scanner keyScan;
+     Scanner keyScan; 
 
     public TeamController (Scanner scanner) {
         this.keyScan = scanner;
@@ -41,7 +43,7 @@ public class TeamController {
         }
         return -1;
     }
-
+   
     void onTeamAdd() {
         System.out.println("[팀 정보 입력]");
         Team team = new Team();
@@ -56,11 +58,11 @@ public class TeamController {
         team.maxQty = this.keyScan.nextInt();
         this.keyScan.nextLine(); 
 
-        System.out.print("시작일? ");
-        team.startDate = this.keyScan.nextLine();
+        System.out.print("시작일? "); 
+        team.startDate = Date.valueOf(this.keyScan.nextLine());
 
         System.out.print("종료일? ");
-        team.endDate = this.keyScan.nextLine();
+        team.endDate = Date.valueOf(this.keyScan.nextLine());
 
         // 팀 정보가 담겨있는 객체의 주소를 배열에 보관한다.
         this.teams[this.teamIndex++] = team;
@@ -120,9 +122,9 @@ public class TeamController {
             updateTeam.maxQty = this.keyScan.nextInt();
             this.keyScan.nextLine();
             System.out.printf("시작일(%s)? ", team.startDate);
-            updateTeam.startDate = this.keyScan.nextLine();
+            updateTeam.startDate = Date.valueOf(this.keyScan.nextLine()); 
             System.out.printf("종료일(%s)? ", team.endDate);
-            updateTeam.endDate = this.keyScan.nextLine();
+            updateTeam.endDate = Date.valueOf(this.keyScan.nextLine());
             this.teams[i] = updateTeam;
             System.out.println("변경하였습니다.");
         }

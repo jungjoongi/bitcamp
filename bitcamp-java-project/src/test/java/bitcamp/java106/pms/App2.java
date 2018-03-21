@@ -10,7 +10,7 @@ import bitcamp.java106.pms.util.Console;
 //           => getTeamIndex() 추가
 //           회원아이디로 배열에서 회원 정보를 d찾는 코드를 함수로 분리한다.
 //           => getMemberIndex() 추가
-public class App {
+public class App2 {
     // 클래스 변수 = 스태틱 변수
     // => 클래스 안에서 어디에서나 사용할 수 있는 변수이다.
     static Scanner keyScan = new Scanner(System.in);

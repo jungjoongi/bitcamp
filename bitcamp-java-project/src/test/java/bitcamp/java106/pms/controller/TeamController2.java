@@ -3,14 +3,14 @@ import bitcamp.java106.pms.domain.Team;
 import bitcamp.java106.pms.util.Console;
 import java.util.Scanner;
 
-public class TeamController {
+public class TeamController2 {
     public static Scanner keyScan;
     static Team[] teams = new Team[1000];
     static int teamIndex = 0;
 
     public static void service(String menu, String option) {
         if (menu.equals("team/add")) {
-            onTeamAdd();
+            onTeamAdd(); 
         } else if (menu.equals("team/list")) {
             onTeamList();
         } else if (menu.equals("team/view")) {
@@ -18,7 +18,7 @@ public class TeamController {
         } else if (menu.equals("team/update")) {
             onTeamUpdate(option);
         } else if (menu.equals("team/delete")) {
-            onTeamDelete(option);
+            onTeamDelete(option); 
         } else {
             System.out.println("명령어가 올바르지 않습니다.");
         }
