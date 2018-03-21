@@ -1,4 +1,4 @@
- // 이 클래스는 회원 관련 기능을 모두 둔 클래스이다.
+// 이 클래스는 회원 관련 기능을 모두 둔 클래스이다.
 package bitcamp.java106.pms.controller;
 
 import bitcamp.java106.pms.domain.Member;
@@ -8,14 +8,14 @@ import java.util.Scanner;
 public class MemberController {
     // 이 클래스를 사용하려면 keyboard 스캐너가 있어야 한다.
     // 이 클래스를 사용하기 전에 스캐너를 설정하라!
-    Scanner keyScan; 
-    
-    public MemberController (Scanner scanner) {
-        this.keyScan = scanner;
-    }
+    Scanner keyScan;
 
     Member[] members = new Member[1000];
     int memberIndex = 0;
+    
+    public MemberController(Scanner scanner) {
+        this.keyScan = scanner;
+    }
 
     public void service(String menu, String option) {
         if (menu.equals("member/add")) {
@@ -95,19 +95,19 @@ public class MemberController {
             return;
         }
         
-        int i = getMemberIndex(id);
+        int i = this.getMemberIndex(id);
 
         if (i == -1) {
             System.out.println("해당 아이디의 회원이 없습니다.");
         } else {
-            Member member = members[i];
+            Member member = this.members[i];
             Member updateMember = new Member();
             System.out.printf("아이디(%s)? ", member.id);
-            updateMember.id = keyScan.nextLine();
+            updateMember.id = this.keyScan.nextLine();
             System.out.printf("이메일(%s)? ", member.email);
-            updateMember.email = keyScan.nextLine();
+            updateMember.email = this.keyScan.nextLine();
             System.out.printf("암호? ");
-            updateMember.password = keyScan.nextLine();
+            updateMember.password = this.keyScan.nextLine();
             this.members[i] = updateMember;
             System.out.println("변경하였습니다.");
         }

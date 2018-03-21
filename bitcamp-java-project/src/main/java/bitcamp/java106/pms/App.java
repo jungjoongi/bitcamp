@@ -7,18 +7,15 @@ import bitcamp.java106.pms.controller.MemberController;
 import bitcamp.java106.pms.controller.TeamController;
 import bitcamp.java106.pms.util.Console;
 
-// ver 0.2 - member 메뉴를 처리하는 코드를 관련 클래스인 MemberController로 옮긴다.
-// ver 0.1 - team 메뉴를 처리하는 코드를 TeamController로 옮긴다.
 public class App {
     static Scanner keyScan = new Scanner(System.in);
     public static String option = null; 
-
     
-    static void onQuit() { 
-        System.out.println("안녕히 가세요!");  
+    static void onQuit() {
+        System.out.println("안녕히 가세요!");
     }
 
-    static void onHelp() { 
+    static void onHelp() {
         System.out.println("[도움말]");
         System.out.println("팀 등록 명령 : team/add");
         System.out.println("팀 조회 명령 : team/list");
@@ -30,11 +27,13 @@ public class App {
     }
 
     public static void main(String[] args) {
-        // 클래스를 사용하기 전에 필수 값을 설정한다.  
+        // 클래스를 사용하기 전에 필수 값을 설정한다.
+        
+        TeamController teamController = new TeamController(keyScan);
+        MemberController memberController = new MemberController(keyScan);
+        BoardController boardController = new BoardController(keyScan);
+
         Console.keyScan = keyScan;
-        BoardController boardcontroller = new BoardController(keyScan);
-        TeamController teamcontroller = new TeamController(keyScan);
-        MemberController membercontroller = new MemberController(keyScan);
 
         while (true) {
             String[] arr = Console.prompt();
@@ -52,16 +51,16 @@ public class App {
             } else if (menu.equals("help")) {
                 onHelp();
             } else if (menu.startsWith("team/")) {
-                teamcontroller.service(menu, option);
+                teamController.service(menu, option);
             } else if (menu.startsWith("member/")) {
-                membercontroller.service(menu, option);
+                memberController.service(menu, option);
             } else if (menu.startsWith("board/")) {
-                boardcontroller.service(menu, option);
+                boardController.service(menu, option);
             }else {
                 System.out.println("명령어가 올바르지 않습니다.");
             }
 
-            System.out.println();
+            System.out.println(); 
         }
     }
 }
