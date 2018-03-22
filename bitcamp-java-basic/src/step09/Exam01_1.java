@@ -7,6 +7,8 @@ public class Exam01_1 {
         // 생성자를 호출하여 문자열 인스턴스를 초기화시킨다.
         String s1 = new String("Hello");
         String s2 = new String("Hello");
+        
+        
 
         // s1과 s2는  다른 인스턴스이다.
         // -> 증명
