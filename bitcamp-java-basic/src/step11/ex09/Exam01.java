@@ -1,5 +1,5 @@
 // 다형성 - 다형적 변수(polymorphic variables)
-package step11.ex9;
+package step11.ex09;
 
 public class Exam01 {
     public static void main(String[] args) {

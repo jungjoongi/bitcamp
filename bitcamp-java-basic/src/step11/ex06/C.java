@@ -1,4 +1,4 @@
-package step11.ex6;
+package step11.ex06;
 
 public class C extends B {
     int v3;

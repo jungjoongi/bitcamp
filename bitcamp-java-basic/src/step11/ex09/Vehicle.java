@@ -1,4 +1,4 @@
-package step11.ex9;
+package step11.ex09;
 
 public class Vehicle {
     String model;

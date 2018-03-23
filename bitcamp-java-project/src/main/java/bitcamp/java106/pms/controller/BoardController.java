@@ -14,7 +14,7 @@ public class BoardController {
     
     public BoardController(Scanner scanner) {
         this.keyScan = scanner;
-    }
+    } 
     
     public void service(String menu, String option) {
         if (menu.equals("board/add")) {

@@ -1,5 +1,5 @@
 // 다형성 - 다형적 변수의 활용
-package step11.ex9;
+package step11.ex09;
 
 public class Exam04 {
     

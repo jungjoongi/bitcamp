@@ -1,5 +1,5 @@
 // 다형성 - 다형적 변수의 형변환 응용 - instanceof 연산자
-package step11.ex9;
+package step11.ex09;
 
 public class Exam05 {
 

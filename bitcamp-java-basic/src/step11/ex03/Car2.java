@@ -1,5 +1,5 @@
 // ㅣ곶 코드를 복사하여 새 클래스를 만든 후에 코드를 추가했다.
-package step11.ex3;
+package step11.ex03;
 
 public class Car2 {
     String model;

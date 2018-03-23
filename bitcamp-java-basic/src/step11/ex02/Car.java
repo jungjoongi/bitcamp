@@ -1,5 +1,5 @@
 // 기존의 Car클래스에 코드를 추가했다..
-package step11.ex2;
+package step11.ex02;
 
 public class Car {
     String model;

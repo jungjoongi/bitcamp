@@ -1,4 +1,4 @@
-package step11.ex7;
+package step11.ex07;
 
 public class Exam01 {
     public static void main(String[] args) {

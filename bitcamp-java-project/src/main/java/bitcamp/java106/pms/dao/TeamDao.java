@@ -41,7 +41,7 @@ public class TeamDao {
         for (int i = 0; i < this.teamIndex; i++) {
             if (this.teams[i] == null) continue;
             if (name.equals(this.teams[i].name.toLowerCase())) {
-                return i;
+                return i; 
             }
         }
         return -1;
