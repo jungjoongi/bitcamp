@@ -16,7 +16,7 @@ public class App {
     
     static void onQuit() {
         System.out.println("안녕히 가세요!");
-    } 
+    }
 
     static void onHelp() {
         System.out.println("[도움말]");
@@ -73,3 +73,6 @@ public class App {
         }
     }
 }
+
+// ver 15 - TeamDao와 MemberDao 객체 생성. 
+//          팀 멤버를 다루는 메뉴 추가.

@@ -7,28 +7,25 @@ import bitcamp.java106.pms.dao.MemberDao;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Team;
-import bitcamp.java106.pms.util.Console;
 
 public class TeamMemberController {
-
+    
     Scanner keyScan;
     TeamDao teamDao;
     MemberDao memberDao;
-
+    
     public TeamMemberController(Scanner scanner, TeamDao teamDao, MemberDao memberDao) {
         this.keyScan = scanner;
         this.teamDao = teamDao;
         this.memberDao = memberDao;
     }
-
+    
     public void service(String menu, String option) {
         if (menu.equals("team/member/add")) {
             this.onTeamMemberAdd(option);
         } else if (menu.equals("team/member/list")) {
-            System.out.println("[팀 멤버 목록]");
             this.onTeamMemberList(option);
         } else if (menu.equals("team/member/delete")) {
-            System.out.println("[팀 멤버 삭제]");
             this.onTeamMemberDelete(option);
         } else {
             System.out.println("명령어가 올바르지 않습니다.");
@@ -36,105 +33,87 @@ public class TeamMemberController {
     }
 
     void onTeamMemberAdd(String teamName) {
-
         if (teamName == null) {
             System.out.println("팀명을 입력하시기 바랍니다.");
             return; 
         }
-
+        
         Team team = teamDao.get(teamName);
         if (team == null) {
             System.out.printf("%s 팀은 존재하지 않습니다.", teamName);
             return;
         }
-
+        
         System.out.println("[팀 멤버 추가]");
         System.out.print("추가할 멤버의 아이디는? ");
         String memberId = keyScan.nextLine();
-
+        
         Member member = memberDao.get(memberId);
         if (member == null) {
             System.out.printf("%s 회원은 없습니다.", memberId);
             return;
         }
-
-        // 기존에 등록된 회원인지 검사
-        boolean exist = false;
-        for (int i = 0; i < team.members.length; i++) {
-            if (team.members[i] == null) continue;
-            if (team.members[i].id.equals(memberId)) {
-                exist = true;
-                break;
-            }
-        }
-
-        if (exist) {
+        
+        if (team.isExist(memberId)) {
             System.out.println("이미 등록된 회원입니다.");
             return;
         }
-
-        // 팀 멤버 배열에서 빈 방을 찾아 그 방에 멤버 객체(의 주소)를 넣는다.
-        for (int i = 0; i < team.members.length; i++) {
-            if (team.members[i] == null) {
-                team.members[i] = member;
-                System.out.println("추가하였습니다.");
-                break;
-            }
-        }
+        
+        team.addMember(member);
     }
 
     void onTeamMemberList(String teamName) {
-        Team team = teamDao.get(teamName);
         if (teamName == null) {
             System.out.println("팀명을 입력하시기 바랍니다.");
             return; 
         }
-
+        
+        Team team = teamDao.get(teamName);
         if (team == null) {
             System.out.printf("%s 팀은 존재하지 않습니다.", teamName);
             return;
         }
 
         System.out.println("[팀 멤버 목록]");
-        System.out.println("회원들: ");
-        for (int i = 0; i < team.members.length; i++) {
-            if (team.members[i] == null) continue;
-            System.out.printf("%s, ", team.members[i].id);
+        System.out.print("회원들: ");
+        
+        Member[] members = team.getMembers();
+        
+        for (int i = 0; i < members.length; i++) {
+            if (members[i] == null) continue;
+            System.out.printf("%s, ", members[i].getId());
         }
+        System.out.println();
     }
 
     void onTeamMemberDelete(String teamName) {
+        if (teamName == null) {
+            System.out.println("팀명을 입력하시기 바랍니다.");
+            return; 
+        }
+        
         Team team = teamDao.get(teamName);
         if (team == null) {
             System.out.printf("%s 팀은 존재하지 않습니다.", teamName);
             return;
         }
-        Member member = memberDao.get(memberId);
-        // 팀 멤버 삭제
-        for (int i = 0 ; i < team.members.length; i++ ) {
-            if (team.members[i] == null ) continue;
-            if (team.members[i].id.equals(memberId)) continue;
-            
+        
+        System.out.print("삭제할 팀원은? ");
+        String memberId = keyScan.nextLine();
+        
+        if (!team.isExist(memberId)) {
+            System.out.println("이 팀의 회원이 아닙니다.");
+            return;
         }
+
+        team.deleteMember(memberId);
+        
         System.out.println("[팀 멤버 삭제]");
-        if (teamName == null) {
-            System.out.println("팀명을 입력하시기 바랍니다.");
-            return; 
-        }
-
-        Team team = teamDao.get(name);
-
-        if (team == null) {
-            System.out.println("해당 이름의 팀이 없습니다.");
-        } else {
-            if (Console.confirm("정말 삭제하시겠습니까?")) {
-                teamDao.delete(team.name);
-                System.out.println("삭제하였습니다.");
-            }
-        }
+        System.out.println("삭제하였습니다.");
     }
-
 }
 
-//ver 14 - TeamDao를 사용하여 팀 데이터를 관리한다.
+//ver 16 - 인스턴스 변수를 직접 사용하는 대신 겟터, 셋터 사용.
+// ver 15 - 팀 멤버를 등록, 조회, 삭제할 수 있는 기능 추가. 
+// ver 14 - TeamDao를 사용하여 팀 데이터를 관리한다.
 // ver 13 - 시작일, 종료일을 문자열로 입력 받아 Date 객체로 변환하여 저장.
