@@ -23,6 +23,12 @@ public class Member {
     public void setPassword(String password) {
         this.password = password;
     }
+    @Override
+    public String toString() {
+        return "Member [id=" + id + ", email=" + email + ", password=" + password + "]";
+    }
+    
+   
 }
 
 //ver 16 - 캡슐화 적용. 겟터, 셋터 추가.

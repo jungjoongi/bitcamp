@@ -85,6 +85,15 @@ public class Team {
         }
         return 0;
     }
+    public Member getMember(String memberId) {
+        for (int i = 0; i < this.members.length; i++) {
+            if (this.members[i] == null) continue;
+            if (this.members[i].getId().equals(memberId)) {
+                return this.members[i];
+            }
+        }
+        return null;
+    }
     
     public boolean isExist(String memberId) {
         for (int i = 0; i < this.members.length; i++) {
@@ -95,6 +104,12 @@ public class Team {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Team [name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + "]";
+    }
+    
 }
 
 //ver 16 - 캡슐화 적용. 겟터, 셋터 추가.

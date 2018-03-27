@@ -24,7 +24,7 @@ public class TeamController {
         } else if (menu.equals("team/list")) {
             this.onTeamList();
         } else if (menu.equals("team/view")) {
-            this.onTeamView(option); 
+            this.onTeamView(option);
         } else if (menu.equals("team/update")) {
             this.onTeamUpdate(option);
         } else if (menu.equals("team/delete")) {

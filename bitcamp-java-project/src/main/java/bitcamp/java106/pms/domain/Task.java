@@ -4,62 +4,80 @@ import java.sql.Date;
 import java.util.Scanner;
 
 public class Task {
-    private String projectName;
-    private Date StartDate;
-    private Date EndDate;
-    Task[] tasks = new Task[1000];
-    int taskIndex = 0;
+    public static final int READY = 0;
+    public static final int WORKING = 1;
+    public static final int COMPLETE = 9;
+    private String title;
+    private Date startDate;
+    private Date endDate;
+    private int state; 
+    private Member worker;
+    private Team team;
+    private int no;
     
-    static Scanner keyScan = new Scanner(System.in);
-   
-    public String getProjectName() { 
-        return projectName;
+    public Task(Team team) {
+        this.team = team;
     }
-    
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
+    public Task(Team team, String title, Date startDate, Date endDate) {
+        this.team = team;
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.state = READY;
     }
+
     
+    
+    public int getNo() {
+        return no;
+    }
+    public void setNo(int no) {
+        this.no = no;
+    }
+    public int getState() {
+        return state;
+    }
+    public void setState(int state) {
+        this.state = state;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
     public Date getStartDate() {
-        return StartDate;
+        return startDate;
     }
-    
     public void setStartDate(Date startDate) {
-        StartDate = startDate;
-    } 
-    
+        this.startDate = startDate;
+    }
     public Date getEndDate() {
-        return EndDate;
+        return endDate;
     }
-    
     public void setEndDate(Date endDate) {
-        EndDate = endDate;
+        this.endDate = endDate;
     }
-    
-
-
-    public void insert(Task task) {
-        this.tasks[this.taskIndex++] = task;
-
+    public Member getworker() {
+        return worker;
     }
-    
-    public static void taskAdd() {
-        Task task = new Task();
- 
-        System.out.println("작업명?");
-        task.setProjectName(keyScan.nextLine());
-
-        System.out.println("시작일?");
-        task.setStartDate(Date.valueOf(keyScan.nextLine()));
-
-        System.out.println("종료일?");
-        task.setEndDate(Date.valueOf(keyScan.nextLine()));
-        
-        task.insert(task);
-        
-    
+    public void setworker(Member worker) {
+        this.worker = worker;
     }
+    public Team getTeam() {
+        return team;
+    }
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     
+    @Override
+    public String toString() {
+        return "Task [title=" + title + ", startDate=" + startDate + ", endDate=" + endDate + ", state=" + state
+                + ", worker=" + worker + ", team=" + team + "]";
     
+  
+    }
     
 }
