@@ -18,7 +18,7 @@ public class TeamDao {
         return arr;
     }
     
-    public Team get(String name) {
+    public Team get(String name) { 
         int i = this.getTeamIndex(name);
         if (i == -1)
             return null;

@@ -53,7 +53,7 @@ public class TeamMemberController {
             System.out.printf("%s 회원은 없습니다.", memberId);
             return;
         }
-        
+         
         if (team.isExist(memberId)) {
             System.out.println("이미 등록된 회원입니다.");
             return;

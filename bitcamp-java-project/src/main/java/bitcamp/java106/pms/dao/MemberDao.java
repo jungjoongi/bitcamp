@@ -24,7 +24,7 @@ public class MemberDao {
             return null;
         return this.members[i];
     }
-    
+     
     public void update(Member member) {
         int i = this.getMemberIndex(member.getId());
         if (i != -1)
