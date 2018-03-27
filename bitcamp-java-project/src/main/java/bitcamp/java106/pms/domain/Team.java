@@ -15,7 +15,7 @@ public class Team {
     private Member[] members = new Member[10];
      
     
-    
+     
     // 사용자 정의 데이터 타입에서 메서드 정의란?
     // => 새 데이터 타입의 값을 다룰 연산자를 정의하는 것을 의미한다.
     
