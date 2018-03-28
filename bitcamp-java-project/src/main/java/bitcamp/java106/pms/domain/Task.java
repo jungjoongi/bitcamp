@@ -18,14 +18,13 @@ public class Task {
     public Task(Team team) {
         this.team = team;
     }
-    public Task(Team team, String title, Date startDate, Date endDate) {
-        this.team = team;
-        this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.state = READY;
-    }
-
+//    public Task(Team team, String title, Date startDate, Date endDate) {
+//        this.team = team;
+//        this.title = title;
+//        this.startDate = startDate;
+//        this.endDate = endDate;
+//        this.state = READY;
+//    }
     
     
     public int getNo() {
