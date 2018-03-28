@@ -7,6 +7,9 @@ public class Task {
     public static final int READY = 0;
     public static final int WORKING = 1;
     public static final int COMPLETE = 9;
+    
+    private static int count = 1;
+    
     private String title;
     private Date startDate;
     private Date endDate;
@@ -16,15 +19,16 @@ public class Task {
     private int no;
     
     public Task(Team team) {
+        this.no = count++;
         this.team = team;
     }
-//    public Task(Team team, String title, Date startDate, Date endDate) {
-//        this.team = team;
-//        this.title = title;
-//        this.startDate = startDate;
-//        this.endDate = endDate;
-//        this.state = READY;
-//    }
+    public Task(Team team, String title, Date startDate, Date endDate) {
+        this.team = team;
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.state = READY;
+    }
     
     
     public int getNo() {
@@ -57,10 +61,10 @@ public class Task {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-    public Member getworker() {
+    public Member getWorker() {
         return worker;
     }
-    public void setworker(Member worker) {
+    public void setWorker(Member worker) {
         this.worker = worker;
     }
     public Team getTeam() {
