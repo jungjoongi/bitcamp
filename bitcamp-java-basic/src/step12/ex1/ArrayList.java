@@ -56,13 +56,12 @@ public class ArrayList {
     }
     
     public void add(int index, Object value) {
-        if (index < 0 || index >= cursor)
+        if (index < 0 || index > cursor)
             return;
         
         if (cursor >= list.length) {
             this.increaseArray();
         }
-        
         for (int i = cursor - 1; i >= index; i--) {
             list[i + 1] = list[i];
         }
@@ -81,6 +80,23 @@ public class ArrayList {
     public int size() {
         return cursor;
     }
+    
+    public boolean contains(Object value) { // 같은 객체 x 같은 내용검사 o
+        for (Object obj : list ) {
+            if (obj.equals(value))
+                return true; 
+        }
+        return false;
+    }
+    
+    public int indexOf(Object value) { // 같은 객체 x 같은 내용검사 o
+        for (int i = 0; i < list.length; i++) {
+            if (list[i].equals(value))
+                return i;
+        }
+        return -1;
+    }
+    
 }
 
 

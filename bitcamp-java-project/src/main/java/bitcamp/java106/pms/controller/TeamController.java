@@ -8,7 +8,7 @@ import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.domain.Team;
 import bitcamp.java106.pms.util.Console;
 
-public class TeamController {
+public class TeamController implements Controller {
 
     Scanner keyScan;
     TeamDao teamDao;
@@ -59,12 +59,12 @@ public class TeamController {
 
     void onTeamList() {
         System.out.println("[팀 목록]");
-        Team[] list = teamDao.list();
-        for (int i = 0; i < list.length; i++) {
-            if (list[i] == null) continue;
+        Team[] teams = teamDao.list();
+        for (Team team: teams) {
+            if (teams == null) continue;
             System.out.printf("%s, %d, %s ~ %s\n", 
-                    list[i].getName(), list[i].getMaxQty(), 
-                    list[i].getStartDate(), list[i].getEndDate());
+                    team.getName(), team.getMaxQty(), 
+                    team.getStartDate(), team.getEndDate());
         }
     }
 

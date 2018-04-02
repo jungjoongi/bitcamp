@@ -2,7 +2,7 @@ package step12.ex1;
 
 import step12.ex1.ArrayList;
 
-public class Exam01 {
+public class Exam01_1 {
     public static void main(String[] args) {
         ArrayList list = new ArrayList();
         list.add("aaa"); // aaa,

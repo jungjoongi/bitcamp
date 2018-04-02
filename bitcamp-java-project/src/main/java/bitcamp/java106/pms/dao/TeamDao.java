@@ -1,20 +1,20 @@
 package bitcamp.java106.pms.dao;
 
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.util.ArrayList;
 
 public class TeamDao {
-    Team[] teams = new Team[1000];
-    int teamIndex = 0;
+    
+    ArrayList collection = new ArrayList();
     
     public void insert(Team team) {
-        // 팀 정보가 담겨있는 객체의 주소를 배열에 보관한다.
-        this.teams[this.teamIndex++] = team;
+        collection.add(team);
     }
     
     public Team[] list() {
-        Team[] arr = new Team[this.teamIndex];
-        for (int i = 0; i < this.teamIndex; i++) 
-            arr[i] = this.teams[i];
+        Team[] arr = new Team[collection.size()];
+        for (int i = 0; i < collection.size(); i++) 
+            arr[i] = (Team)collection.get(i);
         return arr;
     }
     
@@ -22,25 +22,26 @@ public class TeamDao {
         int i = this.getTeamIndex(name);
         if (i == -1)
             return null;
-        return teams[i];
+        return (Team)collection.get(i);
     }
     
     public void update(Team team) {
         int i = this.getTeamIndex(team.getName());
         if (i != -1)
-            teams[i] = team;
+            collection.set(i, team);
     }
     
     public void delete(String name) {
         int i = this.getTeamIndex(name);
         if (i != -1) 
-            teams[i] = null;
+            collection.remove(i);
     }
     
     private int getTeamIndex(String name) {
-        for (int i = 0; i < this.teamIndex; i++) {
-            if (this.teams[i] == null) continue;
-            if (name.equals(this.teams[i].getName().toLowerCase())) {
+        
+        for (int i = 0; i < this.collection.size(); i++) {
+            if (name.toLowerCase().equals(
+                    ((Team) collection.get(i)).getName().toLowerCase())) {
                 return i;
             }
         }
