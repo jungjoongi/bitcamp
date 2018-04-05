@@ -1,15 +1,11 @@
 package bitcamp.java106.pms.dao;
 
+import bitcamp.java106.pms.domain.Board;
 import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.util.ArrayList;
 
-public class TaskDao {
-    private ArrayList collection = new ArrayList();
-    
-    public void insert(Task task) {
-        this.collection.add(task);
-    }
-    
+public class TaskDao<E> AbstractDao<E> {
+
     private int count(String teamName) {
         int cnt = 0;
         for (int i = 0; i < collection.size(); i++) {
@@ -21,7 +17,7 @@ public class TaskDao {
         }
         return cnt;
     }
-    
+
     public Task[] list(String teamName) {
         Task[] arr = new Task[this.count(teamName)];
         for (int i = 0, x = 0; i < collection.size(); i++) {
@@ -33,32 +29,12 @@ public class TaskDao {
         }
         return arr;
     }
-    
-    public Task get(int taskNo) {
-        int index = this.getTaskIndex(taskNo);
-        if (index < 0)
-            return null;
-        return (Task) collection.get(index);
-    }
-    
-    public void update(Task task) {
-        int index = this.getTaskIndex(task.getNo());
-        if (index < 0)
-            return;
-        collection.set(index, task);
-    }
-    
-    public void delete(int taskNo) {
-        int index = this.getTaskIndex(taskNo);
-        if (index < 0)
-            return;
-        collection.remove(index);
-    }
-    
-    private int getTaskIndex(int taskNo) {
+
+    public int indexOf(Object key) {
+        int no = (Integer) key; 
         for (int i = 0; i < collection.size(); i++) {
-            Task task = (Task) collection.get(i);
-            if (task.getNo() == taskNo) {
+            Board originBoard = (Board) collection.get(i);
+            if (originBoard.getNo() == no) {
                 return i;
             }
         }

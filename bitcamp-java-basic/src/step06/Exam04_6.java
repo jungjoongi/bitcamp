@@ -1,6 +1,5 @@
 // 메서드 : 스택 메모리 응용 III - 스택 오버플로우
 package step06;
-import java.util.Scanner;
 
 public class Exam04_6 {
 
