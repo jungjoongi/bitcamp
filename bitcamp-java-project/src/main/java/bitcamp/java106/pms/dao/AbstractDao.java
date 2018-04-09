@@ -39,6 +39,7 @@ public abstract class AbstractDao<E> {
     public abstract int indexOf(Object key);
 }
 
+//ver 22 - generalization을 통해 클래스 추가
 
 
 

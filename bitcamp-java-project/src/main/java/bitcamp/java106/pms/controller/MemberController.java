@@ -1,12 +1,16 @@
-// 이 클래스는 회원 관련 기능을 모두 둔 클래스이다.
+// Controller 규칙에 따라 메서드 작성
 package bitcamp.java106.pms.controller;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
+import bitcamp.java106.pms.annotation.Component;
 import bitcamp.java106.pms.dao.MemberDao;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.util.Console;
-
+@Component("Member")
+//MemberController는 Controller 규칙을 이행한다.
+//=> Controller 규칙에 따라 메서드를 만든다.
 public class MemberController implements Controller {
     Scanner keyScan;
 
@@ -51,10 +55,11 @@ public class MemberController implements Controller {
 
     void onMemberList() {
         System.out.println("[회원 목록]");
-        Member[] list = memberDao.list();
-        for (int i = 0; i < list.length; i++) {
+        Iterator<Member> iterator = memberDao.list();
+        while (iterator.hasNext()) {
+            Member member = iterator.next();
             System.out.printf("%s, %s, %s\n", 
-                list[i].getId(), list[i].getEmail(), list[i].getPassword());
+                member.getId(), member.getEmail(), member.getPassword());
         }
     }
 
@@ -96,7 +101,8 @@ public class MemberController implements Controller {
             System.out.printf("암호? ");
             updateMember.setPassword(this.keyScan.nextLine());
             
-            memberDao.update(updateMember);
+            int index = memberDao.indexOf(member.getId());
+            memberDao.update(index, updateMember);
             System.out.println("변경하였습니다.");
         }
     }
@@ -122,6 +128,9 @@ public class MemberController implements Controller {
     
 }
 
+//ver 22 - MemberDao 변경 사항에 맞춰 이 클래스를 변경한다.
+//ver 18 - ArrayList가 적용된 MemberDao를 사용한다.
+//         onMemberList()에서 배열의 각 항목에 대해 null 값을 검사하는 부분을 제거한다.
 //ver 16 - 인스턴스 변수를 직접 사용하는 대신 겟터, 셋터 사용.
 // ver 15 - MemberDao를 생성자에서 주입 받도록 변경.
 // ver 14 - MemberDao를 사용하여 회원 데이터를 관리한다.

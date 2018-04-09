@@ -2,12 +2,12 @@ package bitcamp.java106.pms.dao;
 
 import bitcamp.java106.pms.domain.Board;
 
-public class BoardDao<E> extends AbstractDao<E> {
+public class BoardDao extends AbstractDao<Board> {
     
     public int indexOf(Object key) {
         int no = (Integer) key; // Integer ==> int : auto-unboxing
         for (int i = 0; i < collection.size(); i++) {
-            Board originBoard = (Board) collection.get(i);
+            Board originBoard = collection.get(i);
             if (originBoard.getNo() == no) {
                 return i;
             }

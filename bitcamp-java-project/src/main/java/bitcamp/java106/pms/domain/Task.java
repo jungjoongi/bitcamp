@@ -1,7 +1,6 @@
 package bitcamp.java106.pms.domain;
 
 import java.sql.Date;
-import java.util.Scanner;
 
 public class Task {
     public static final int READY = 0;
@@ -9,27 +8,27 @@ public class Task {
     public static final int COMPLETE = 9;
     
     private static int count = 1;
-    
+
+    private int no;
     private String title;
     private Date startDate;
     private Date endDate;
-    private int state; 
+    private int state;
     private Member worker;
     private Team team;
-    private int no;
     
     public Task(Team team) {
         this.no = count++;
         this.team = team;
     }
+    
     public Task(Team team, String title, Date startDate, Date endDate) {
-        this.team = team;
+        this(team);
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
         this.state = READY;
     }
-    
     
     public int getNo() {
         return no;
@@ -42,6 +41,18 @@ public class Task {
     }
     public void setState(int state) {
         this.state = state;
+    }
+    public Member getWorker() {
+        return worker;
+    }
+    public void setWorker(Member worker) {
+        this.worker = worker;
+    }
+    public Team getTeam() {
+        return team;
+    }
+    public void setTeam(Team team) {
+        this.team = team;
     }
     public String getTitle() {
         return title;
@@ -61,26 +72,16 @@ public class Task {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
-    public Member getWorker() {
-        return worker;
-    }
-    public void setWorker(Member worker) {
-        this.worker = worker;
-    }
-    public Team getTeam() {
-        return team;
-    }
-    public void setTeam(Team team) {
-        this.team = team;
-    }
 
-    
     @Override
     public String toString() {
         return "Task [title=" + title + ", startDate=" + startDate + ", endDate=" + endDate + ", state=" + state
                 + ", worker=" + worker + ", team=" + team + "]";
-    
-  
     }
-    
 }
+
+//ver 17 - 사용자 정의 데이터 타입 생성
+
+
+
+

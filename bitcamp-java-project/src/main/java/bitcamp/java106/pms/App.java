@@ -17,9 +17,11 @@ import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.util.ApplicationContext;
 import bitcamp.java106.pms.util.Console;
 
 public class App {
+	static ApplicationContext iocContainer;
     static Scanner keyScan = new Scanner(System.in);
     public static String option = null; 
     
@@ -39,11 +41,12 @@ public class App {
     }
 
     public static void main(String[] args) {
+    	HashMap<String,Object> defaultBeans = new HashMap<>();
+    	defaultBeans.put("java.util.Scanner", keyScan);
         
-        TeamDao teamDao = new TeamDao();
-        MemberDao memberDao = new MemberDao();
-        TaskDao taskDao = new TaskDao();
-        TeamMemberDao teamMemberDao = new TeamMemberDao();
+    	
+    	iocContainer = new ApplicationContext(
+    			"bitcamp.java106.pms", defaultBeans);
         
         // 테스트용 데이터를 준비한다. 
         prepareMemberData(memberDao);
@@ -55,10 +58,13 @@ public class App {
         MemberController memberController = new MemberController(
                 keyScan, memberDao);
         BoardController boardController = new BoardController(keyScan);
-        TaskController taskController = new TaskController(keyScan, teamDao, taskDao, teamMemberDao, memberDao);
-        ClassroomController classroomController = new ClassroomController(keyScan);
+        TaskController taskController = new TaskController(
+                keyScan, teamDao, taskDao, teamMemberDao, memberDao);
+        ClassroomController classroomController = new ClassroomController(
+                keyScan);
         
-        HashMap<String,Controller> controllerMap = new HashMap<>();
+        HashMap<String,Controller> controllerMap = 
+                new HashMap<>();
 
         controllerMap.put("board", boardController);
         controllerMap.put("classroom", classroomController);
@@ -85,7 +91,7 @@ public class App {
             } else if (menu.equals("help")) {
                 onHelp();
             } else {
-                int slashIndex = menu.lastIndexOf("/"); 
+                int slashIndex = menu.lastIndexOf("/");
                 String controllerKey = menu.substring(0, slashIndex);
                 Controller controller = controllerMap.get(controllerKey);
                 
@@ -99,10 +105,11 @@ public class App {
             System.out.println(); 
         }
     }
-    static void prepareMemberData(MemberDao memberDao) {
+    static void prepareMemberData() {
+    	MemberDao memberDao = (MemberDao) iocContainer.getBean("bitcamp.java106.pms.dao.MemberDao");
         Member member = new Member();
         member.setId("aaa");
-        member.setEmail("aaa@test/.com");
+        member.setEmail("aaa@test.com");
         member.setPassword("1111");
         
         memberDao.insert(member);
@@ -137,8 +144,8 @@ public class App {
     }
     
     static void prepareTeamData(
-            TeamDao teamDao, 
-            TeamMemberDao teamMemberDao) {
+    		TeamDao teamDao = (TeamDao) iocContainer.getBean("bitcamp.java106.pms.dao.TeamDao");
+    		TeamMemberDao teamMemberDao = (TeamMemberDao) iocContainer.getBean("bitcamp.java106.pms.dao.TeamMemberDao");
         Team team = new Team();
         team.setName("t1");
         team.setMaxQty(5);

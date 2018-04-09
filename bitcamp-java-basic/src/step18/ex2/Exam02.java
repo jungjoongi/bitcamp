@@ -1,4 +1,4 @@
-
+// 클래스 정보 추출 - 클래스의 수퍼 클래스 정보 알아내기
 package step18.ex2;
 
 public class Exam02 {
@@ -11,6 +11,7 @@ public class Exam02 {
         
         Class superClazz = clazz.getSuperclass();
         System.out.println(superClazz.getName());
-        
+
     }
+
 }
