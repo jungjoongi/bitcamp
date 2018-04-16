@@ -1,8 +1,14 @@
 package bitcamp.java106.pms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Classroom {
+public class Classroom implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
     private static int count;
     
     private int no;
@@ -25,6 +31,9 @@ public class Classroom {
         return no;
     }
     public void setNo(int no) {
+        if (no >= count) {
+            count = no + 1;
+        }
         this.no = no;
     }
     public String getTitle() {

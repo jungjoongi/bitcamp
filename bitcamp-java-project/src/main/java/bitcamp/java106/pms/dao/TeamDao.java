@@ -1,8 +1,26 @@
 package bitcamp.java106.pms.dao;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.sql.Date;
+import java.util.Iterator;
+import java.util.Scanner;
+
+import bitcamp.java106.pms.annotation.Component;
+import bitcamp.java106.pms.domain.Board;
 import bitcamp.java106.pms.domain.Team;
 
+@Component
 public class TeamDao extends AbstractDao<Team> {
+    
+    public TeamDao() throws Exception {
+        load();
+    }
     
     public int indexOf(Object key) {
         String name = (String) key;
@@ -13,8 +31,43 @@ public class TeamDao extends AbstractDao<Team> {
         }
         return -1;
     }
+    
+    
+    public void load() throws Exception {
+        try (
+                ObjectInputStream in = new ObjectInputStream(
+                        new BufferedInputStream(
+                                new FileInputStream("data/team.data")));
+                ) {
+            while (true) {
+                try {
+                    this.insert((Team) in.readObject());
+                } catch (Exception e) { 
+                    break; 
+                }
+            }
+        } 
+    }
+    
+    public void save() throws Exception {
+        try (
+                ObjectOutputStream out = new ObjectOutputStream(
+                                         new BufferedOutputStream(
+                                         new FileOutputStream("data/team.data")));
+                ) {
+            Iterator<Team> teams = this.list();
+
+            // List에 보관된 데이터를 team.csv 파일에 저장한다.
+            // 기존에 저장된 데이터를 덮어쓴다. 즉 처음부터 다시 저장한다.
+            while (teams.hasNext()) {
+                out.writeObject(teams.next());
+            }
+        } 
+    }
+    
 }
 
+//ver 23 - @Component 애노테이션을 붙인다.
 //ver 22 - 추상 클래스 AbstractDao를 상속 받는다.
 //ver 19 - 우리 만든 ArrayList 대신 java.util.LinkedList를 사용하여 목록을 다룬다. 
 //ver 18 - ArrayList 클래스를 적용하여 객체(의 주소) 목록을 관리한다.

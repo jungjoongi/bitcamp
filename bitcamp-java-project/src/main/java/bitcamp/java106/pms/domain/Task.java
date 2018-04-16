@@ -1,8 +1,13 @@
 package bitcamp.java106.pms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Task {
+public class Task implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     public static final int READY = 0;
     public static final int WORKING = 1;
     public static final int COMPLETE = 9;
@@ -16,6 +21,8 @@ public class Task {
     private int state;
     private Member worker;
     private Team team;
+    
+
     
     public Task(Team team) {
         this.no = count++;

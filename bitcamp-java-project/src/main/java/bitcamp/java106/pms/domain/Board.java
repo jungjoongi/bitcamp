@@ -1,9 +1,12 @@
 // 게시글 데이터를 저장할 새 데이터 타입을 정의한다.
 package bitcamp.java106.pms.domain;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Board {
+public class Board implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private static int count = 1;
     
     private int no;
@@ -19,6 +22,10 @@ public class Board {
         return no;
     }
     public void setNo(int no) {
+        //외부에서 입력받은 번호가  count보다 클 때는 count의 값을 증가시켜야 한다.
+        if (no >= count) {
+            count = no + 1;
+        }
         this.no = no;
     }
     public String getTitle() {
