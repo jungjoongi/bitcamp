@@ -1,9 +1,8 @@
 // Controller 규칙에 따라 메서드 작성
 package bitcamp.java106.pms.controller.task;
 
+import java.io.PrintWriter;
 import java.sql.Date;
-import java.util.Iterator;
-import java.util.Scanner;
 
 import bitcamp.java106.pms.annotation.Component;
 import bitcamp.java106.pms.controller.Controller;
@@ -11,85 +10,64 @@ import bitcamp.java106.pms.dao.MemberDao;
 import bitcamp.java106.pms.dao.TaskDao;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
+import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.domain.Team;
-import bitcamp.java106.pms.util.Console;
+import bitcamp.java106.pms.server.ServerRequest;
+import bitcamp.java106.pms.server.ServerResponse;
 
-@Component("task/add")
+@Component("/task/add")
 public class TaskAddController implements Controller {
     
-    Scanner keyScan;
     TeamDao teamDao;
     TaskDao taskDao;
     MemberDao memberDao;
     TeamMemberDao teamMemberDao;
     
-    public TaskAddController(Scanner scanner, TeamDao teamDao, 
+    public TaskAddController(TeamDao teamDao, 
             TaskDao taskDao, TeamMemberDao teamMemberDao, MemberDao memberDao) {
-        this.keyScan = scanner;
         this.teamDao = teamDao;
         this.taskDao = taskDao;
         this.teamMemberDao = teamMemberDao;
         this.memberDao = memberDao;
     }
     
-    public void service(String menu, String option) {
-        if (option == null) {
-            System.out.println("팀명을 입력하시기 바랍니다.");
-            return; 
-        }
+    @Override
+    public void service(ServerRequest request, ServerResponse response) {
+        PrintWriter out = response.getWriter();
+        Task task = new Task();
+        task.setTitle(request.getParameter("title"));
+        task.setStartDate(Date.valueOf(request.getParameter("startDate")));
+        task.setEndDate(Date.valueOf(request.getParameter("endDate")));
+        task.setTeam(new Team().setName(request.getParameter("teamName")));
+        task.setWorker(new Member().setId(request.getParameter("memberId")));
         
-        Team team = teamDao.get(option);
-        if (team == null) {
-            System.out.printf("'%s' 팀은 존재하지 않습니다.", option);
-            return;
-        }
-        
-        Task task = new Task(team);
-        
-        System.out.println("[팀 작업 추가]");
-        System.out.print("작업명? ");
-        task.setTitle(keyScan.nextLine());
-        
-        System.out.print("시작일? ");
-        String str = keyScan.nextLine();
-        if (str.length() == 0) {
-            task.setStartDate(team.getStartDate());
-        } else {
-            Date date = Date.valueOf(str);
-            if (date.getTime() < team.getStartDate().getTime()) {
-                task.setStartDate(team.getStartDate());
-            } else {
-                task.setStartDate(date);
+        try {
+            Team team = teamDao.selectOne(task.getTeam().getName());
+            if (team == null) {
+                out.printf("'%s' 팀은 존재하지 않습니다.\n", task.getTeam().getName());
+                return;
             }
-        }
-        System.out.print("종료일? ");
-        str = keyScan.nextLine();
-        if (str.length() == 0) {
-            task.setEndDate(team.getEndDate());
-        } else {
-            Date date = Date.valueOf(str);
-            if (date.getTime() > team.getEndDate().getTime()) {
-                task.setEndDate(team.getEndDate());
-            } else {
-                task.setEndDate(date);
+            
+            Member member = memberDao.selectOne(task.getWorker().getId());
+            if (member == null) {
+                out.printf("'%s' 회원은 존재하지 않습니다.\n", task.getWorker().getId());
+                return;
             }
+            
+            taskDao.insert(task);
+            out.println("등록 성공!");
+        } catch (Exception e) {
+            out.println("등록 실패!");
+            e.printStackTrace(out);
         }
-        
-        System.out.print("작업자 아이디? ");
-        String memberId = keyScan.nextLine();
-        if (memberId.length() != 0) {
-            if (!teamMemberDao.isExist(team.getName(), memberId)) {
-                System.out.printf("'%s'는 이 팀의 회원이 아닙니다. 작업자는 비워두겠습니다.", memberId);
-            } else {
-                task.setWorker(this.memberDao.get(memberId));
-            }
-        }
-        
-        taskDao.insert(task);
     }
+
 }
 
+//ver 31 - JDBC API가 적용된 DAO 사용
+//ver 28 - 네트워크 버전으로 변경
+//ver 26 - TaskController에서 add() 메서드를 추출하여 클래스로 정의.
 //ver 23 - @Component 애노테이션을 붙인다.
 //ver 22 - TaskDao 변경 사항에 맞춰 이 클래스를 변경한다.
 //ver 18 - ArrayList가 적용된 TaskDao를 사용한다.
