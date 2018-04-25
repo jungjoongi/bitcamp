@@ -13,9 +13,17 @@ import bitcamp.java106.pms.annotation.Component;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Task;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.jdbc.DataSource;
 
 @Component
 public class TaskDao {
+    
+    DataSource dataSource;
+    
+    public TaskDao(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+    
     public int delete(int no) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (

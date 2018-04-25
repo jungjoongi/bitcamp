@@ -9,9 +9,18 @@ import java.util.List;
 
 import bitcamp.java106.pms.annotation.Component;
 import bitcamp.java106.pms.domain.Board;
+import bitcamp.java106.pms.jdbc.DataSource;
 
 @Component
 public class BoardDao {
+    
+    DataSource dataSource;
+    
+    public BoardDao(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+    
+    
     public int delete(int no) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (

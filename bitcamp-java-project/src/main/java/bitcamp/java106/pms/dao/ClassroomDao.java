@@ -11,9 +11,17 @@ import java.util.Locale;
 
 import bitcamp.java106.pms.annotation.Component;
 import bitcamp.java106.pms.domain.Classroom;
+import bitcamp.java106.pms.jdbc.DataSource;
 
 @Component
 public class ClassroomDao {
+    
+    DataSource dataSource;
+    
+    public ClassroomDao(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+    
     public int delete(int no) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (

@@ -10,7 +10,7 @@ public class Exam01_delete {
         String no = keyScan.nextLine();
         
         try {
-            DataSource dataSource = new DataSource();
+            DataSource dataSource = new DefaultDataSource();
             BoardDao boardDao = new BoardDao(dataSource);
             int count = boardDao.delete(Integer.parseInt(no));
             System.out.printf("%d개 삭제 성공!", count);

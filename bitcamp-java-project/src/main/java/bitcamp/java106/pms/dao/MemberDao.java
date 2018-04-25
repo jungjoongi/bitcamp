@@ -9,9 +9,17 @@ import java.util.List;
 
 import bitcamp.java106.pms.annotation.Component;
 import bitcamp.java106.pms.domain.Member;
+import bitcamp.java106.pms.jdbc.DataSource;
 
 @Component
 public class MemberDao {
+    
+    DataSource dataSource;
+    
+    public MemberDao(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+    
     public int delete(String id) throws Exception {
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (

@@ -10,9 +10,16 @@ import java.util.List;
 import bitcamp.java106.pms.annotation.Component;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Task;
+import bitcamp.java106.pms.jdbc.DataSource;
 
 @Component
 public class TeamMemberDao {
+    
+    DataSource dataSource;
+    
+    public TeamMemberDao(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
 
     public int insert(String teamName, String memberId) throws Exception {

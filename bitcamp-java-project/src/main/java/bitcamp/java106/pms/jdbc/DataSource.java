@@ -1,4 +1,4 @@
-package step25.ex4;
+package bitcamp.java106.pms.jdbc;
 
 import java.sql.Connection;
 

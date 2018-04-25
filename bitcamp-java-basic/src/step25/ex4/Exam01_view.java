@@ -10,7 +10,7 @@ public class Exam01_view {
         String no = keyScan.nextLine();
 
         try {
-            DataSource dataSource = new DataSource();
+            DataSource dataSource = new DefaultDataSource();
             BoardDao boardDao = new BoardDao(dataSource);
             Board board = boardDao.view(no);
             if (board == null) {
