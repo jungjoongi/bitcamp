@@ -15,24 +15,24 @@ import bitcamp.java106.pms.server.ServerResponse;
 
 @Component("/team/member/add")
 public class TeamMemberAddController implements Controller {
-
+    
     TeamDao teamDao;
     MemberDao memberDao;
     TeamMemberDao teamMemberDao;
-
+    
     public TeamMemberAddController(TeamDao teamDao, 
             MemberDao memberDao, TeamMemberDao teamMemberDao) {
         this.teamDao = teamDao;
         this.memberDao = memberDao;
         this.teamMemberDao = teamMemberDao;
     }
-
+    
     @Override
     public void service(ServerRequest request, ServerResponse response) {
         PrintWriter out = response.getWriter();
         String teamName = request.getParameter("teamName");
         String memberId = request.getParameter("memberId");
-
+        
         try {
             Team team = teamDao.selectOne(teamName);
             if (team == null) {
@@ -50,13 +50,15 @@ public class TeamMemberAddController implements Controller {
             }
             teamMemberDao.insert(teamName, memberId);
             out.println("팀에 회원을 추가하였습니다.");
+            
         } catch (Exception e) {
-            out.println("등록실패!");
+            out.println("등록 실패!");
             e.printStackTrace(out);
         }
     }
 }
 
+//ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경
 //ver 26 - TeamMemberController에서 add() 메서드를 추출하여 클래스로 정의.
 //ver 23 - @Component 애노테이션을 붙인다.
