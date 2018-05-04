@@ -9,9 +9,9 @@ public class RandomNumber2 {
 
     public static void main(String[] args) throws Exception { 
         // TODO Auto-generated method stub         
-        for (int i = 0; i < 5; i++) { 
+        for (int i = 0; i < 10; i++) { 
             System.out.print("."); 
-            Thread.currentThread().sleep(1);   
+            Thread.currentThread().sleep(1000);   
         }
 
         for (int a = 0; a < ran.nextInt(1000); a++) {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+    <!-- id: 생성된 객체를 컨테이너에 보관할 떄 사용할 key
+        class: 생성할 객체의 클래스 정보, 
+        반드시 fully-qualified class name (FQName, QName) 이어야한다. -->
+    
+    
+    <bean id="c1" class="bitcamp.java106.step02.Car"/>
+    <!-- 시작내용과 끝 캐그 사이에 내용이 없다면 끝 태그를 생략할 수 없다.
+         단, 생략을 표시하기 위해 반드시 시작태그의 끝에 /를 붙여라 -->
+    <bean id="c2" class="bitcamp.java106.step02.Car"/>
+    
+</beans>
+

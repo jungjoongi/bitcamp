@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<!-- id: 생성된 객체를 컨테이너에 보관할 떄 사용할 key class: 생성할 객체의 클래스 정보, 반드시 fully-qualified 
+		class name (FQName, QName) 이어야한다. -->
+
+
+	<bean id="c1" class="bitcamp.java106.step03.Car" />
+
+	<!-- 다른 생성자 호출하기 : 파라미터 값을 설정하면 그 값에 맞는 생성자가 선택되어 호출된다. -->
+	<bean id="c2" class="bitcamp.java106.step03.Car">
+		<constructor-arg>
+			<value>티코</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="c3" class="bitcamp.java106.step03.Car">
+		<constructor-arg>
+			<value>1980</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="c4" class="bitcamp.java106.step03.Car">
+		<constructor-arg>
+			<value type = "int">1980</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="c5" class="bitcamp.java106.step03.Car">
+		<constructor-arg>
+			<value type = "java.lang.String">소나타</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value type = "java.lang.String">1980</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="c6" class="bitcamp.java106.step03.Car">
+		<constructor-arg>
+			<value type = "int">1890</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value type = "java.lang.String">소나타</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="c7" class="bitcamp.java106.step03.Car">
+		<constructor-arg name="cc">
+			<value type = "int">1890</value>
+		</constructor-arg>
+		<constructor-arg name="model">
+			<value type = "java.lang.String">소나타</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="c8" class="bitcamp.java106.step03.Car">
+		<constructor-arg index="0">
+			<value type = "java.lang.String">소나타</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value type = "int">1890</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="c10" class="bitcamp.java106.step03.Car">
+		<constructor-arg index="0">
+			<value type = "int">1890</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value type = "java.lang.String">소나타</value>
+		</constructor-arg>
+	</bean>
+</beans>
+
