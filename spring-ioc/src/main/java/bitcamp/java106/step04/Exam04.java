@@ -6,20 +6,17 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import bitcamp.java106.BeanUtils;
 
-public class Exam01 {
+public class Exam04 {
 
     public static void main(String[] args) {
 
         ApplicationContext iocContainer = null;
         
         iocContainer = new ClassPathXmlApplicationContext(
-                "bitcamp/java106/step04/application-context-02.xml");
+                "bitcamp/java106/step04/application-context-04.xml");
         
-        BeanUtils.printBeanNames(iocContainer);
-        
-        System.out.println(iocContainer.getBean("c1"));
-        System.out.println(iocContainer.getBean("c2"));
         
     }
+    
 
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- @Autowired 애노테티션을 처리학 객체를 등록한다.
+        => 객체(bean)을 생성한 후에 @AutoWired 애노테이션을 처리할 것이다. -->
+        <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+        
+    
+	<bean id="c1" class="bitcamp.java106.step08.Car3">
+		<property name="model" value="티코" />
+		<property name="maker" value="비트자동차" />
+		<property name="cc" value="890" />
+		<property name="auto" value="true" />
+	</bean>
+	
+	
+	<bean id="e1" class="bitcamp.java106.step08.Engine">
+	   <property name="maker" value="비트자동차"/>
+	   <property name="valve" value="16"/>
+	   <property name="cylinder" value="4"/>
+    </bean>
+</beans>
+
+
+
+
+
+
