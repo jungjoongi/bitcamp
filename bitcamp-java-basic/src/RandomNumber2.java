@@ -24,7 +24,7 @@ public class RandomNumber2 {
                 int size = name.length;
 
 
-                for(int i = 0; i< 28; i++) {
+                for(int i = 0; i< 27; i++) {
                     int num = r.nextInt(size);
 
                     if(isExist(num)) {
@@ -43,11 +43,11 @@ public class RandomNumber2 {
 
     public static void initVars() {
         name = new String[] { "강동현", "경명수", "김가람", "김관희", "김기남", "김범수",  
-                "김복진", "김소영", "김정현", "문선민", "박서경", 
+                "김복진", "김소영", "문선민", "박서경", 
                 "박수현", "박현기", "서도경", "성현동", "오현주", "이동현", 
                 "이상경", "이왕로", "이정호", "임현식", "장하은", "정준기", 
                 "차진호", "최보람", "한돈희", "홍정호", "황재천"}; 
-        cnt = new int[28];
+        cnt = new int[27];
     }
 
     public static void initArray() {
