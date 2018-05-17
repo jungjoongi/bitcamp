@@ -55,7 +55,6 @@ public class TaskAddServlet extends HttpServlet {
         out.println("<h1>작업 등록</h1>");
         
         try {
-            System.out.println(teamName);
             Team team = teamDao.selectOne(teamName);
             if (team == null) {
                 throw new Exception(teamName + "팀은 존재하지 않습니다.\n");
@@ -79,7 +78,7 @@ public class TaskAddServlet extends HttpServlet {
             out.println("<th>작업자</th>");
             out.println("<td>");
             out.println("<select name='memberId'>");
-            out.println("<option>--선택 안함--</option>");
+            out.println("<option value=''>--선택 안함--</option>");
             
             for (Member member : members) {
                 out.printf("<option>%s</option>\n", member.getId());
@@ -137,7 +136,8 @@ public class TaskAddServlet extends HttpServlet {
                 throw new Exception(task.getTeam().getName() + "팀은 존재하지 않습니다.");
             }
             
-            if (!teamMemberDao.isExist(
+            if (task.getWorker().getId().length() > 0 &&
+                    !teamMemberDao.isExist(
                     task.getTeam().getName(), task.getWorker().getId())) {
                 throw new Exception(task.getWorker().getId() + "는 이 팀의 회원이 아닙니다.\n");
             }
@@ -146,7 +146,7 @@ public class TaskAddServlet extends HttpServlet {
             out.println("<p>등록 성공!</p>");
         } catch (Exception e) {
             out.printf("<p>%s</p>\n", e.getMessage());
-            e.printStackTrace(out);
+            e.printStackTrace();
         }
         out.println("</body>");
         out.println("</html>");
