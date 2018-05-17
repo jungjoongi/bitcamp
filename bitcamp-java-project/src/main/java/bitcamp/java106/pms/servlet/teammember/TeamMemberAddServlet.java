@@ -18,8 +18,8 @@ import bitcamp.java106.pms.domain.Team;
 import bitcamp.java106.pms.servlet.InitServlet;
 
 @SuppressWarnings("serial")
-@WebServlet("/teammember/add")
-public class TeamMemberAddController extends HttpServlet {
+@WebServlet("/team/member/add")
+public class TeamMemberAddServlet extends HttpServlet {
     
     TeamDao teamDao;
     MemberDao memberDao;
@@ -33,37 +33,49 @@ public class TeamMemberAddController extends HttpServlet {
     }
     
     @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(
+            HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/plain;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String teamName = request.getParameter("teamName");
         String memberId = request.getParameter("memberId");
         
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.printf("<meta http-equiv='Refresh' content='1;url=../view?name=%s'>\n", teamName);
+        
+        out.println("<title>팀회원 등록</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>팀회원 등록 결과</h1>");
+        
+        
         try {
             Team team = teamDao.selectOne(teamName);
             if (team == null) {
-                out.printf("%s 팀은 존재하지 않습니다.\n", teamName);
-                return;
+                throw new Exception(teamName + "팀은 존재하지 않습니다.\n");
             }
             Member member = memberDao.selectOne(memberId);
             if (member == null) {
-                out.printf("%s 회원은 없습니다.\n", memberId);
-                return;
+                throw new Exception(memberId + "회원은 없습니다.\n");
             }
             if (teamMemberDao.isExist(teamName, memberId)) {
-                out.println("이미 등록된 회원입니다.");
-                return;
+                throw new Exception("이미 등록된 회원입니다.");
             }
             teamMemberDao.insert(teamName, memberId);
-            out.println("팀에 회원을 추가하였습니다.");
+            out.println("<p>팀에 회원을 추가하였습니다.</p>");
             
         } catch (Exception e) {
-            out.println("등록 실패!");
+            out.printf("<p>%s</p>\n", e.getMessage());
             e.printStackTrace(out);
         }
+        out.println("</body>");
+        out.println("</html>");
     }
 }
 
