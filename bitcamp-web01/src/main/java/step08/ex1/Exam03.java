@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/step08/ex1/exam02")
-public class Exam02 extends HttpServlet {
+@WebServlet("/step08/ex1/exam03")
+public class Exam03 extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
         
-        response.setHeader("Refresh", "5;url=http://daum.net");
         response.setContentType("text/html;charset=UTF-8");
         
         PrintWriter out = response.getWriter();
@@ -26,13 +25,14 @@ public class Exam02 extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
-        out.println("<title>exam02</title>");
+        out.println("<title>exam03</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>exam02</h1>");
-        out.println("<p>5초후에 카카오 페이지를 다시 요청한다.<br>");
-        out.println("일종의 페이지를 자동으로 이동하는 효과가 있다.</p>");
+        out.println("<h1>exam03</h1>");
+        out.println("<p>이 내용이 화면에 출력될까요? 확인해보세요</p>");
         out.println("</body>");
         out.println("</html>");
+        
+        response.sendRedirect("http://daum.net");
     }
 }

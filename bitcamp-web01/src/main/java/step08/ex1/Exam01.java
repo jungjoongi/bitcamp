@@ -30,7 +30,7 @@ public class Exam01 extends HttpServlet {
         out.println("<body>");
         out.println("<h1>exam01</h1>");
         out.println("<p>3초후에 카카오 페이지를 다시 요청한다.<br>");
-        out.println("일종의 페이지를 자동으로 이동하는 효과가 있다.");
+        out.println("일종의 페이지를 자동으로 이동하는 효과가 있다.</p>");
         out.println("</body>");
         out.println("</html>");
     }
