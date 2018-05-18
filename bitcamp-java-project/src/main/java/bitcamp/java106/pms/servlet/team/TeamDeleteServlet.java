@@ -35,36 +35,34 @@ public class TeamDeleteServlet extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
-        String name = request.getParameter("name");
-        
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset='UTF-8'>");
-        out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-        out.println("<title>팀 삭제</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>팀 삭제 결과</h1>");
         try {
+            String name = request.getParameter("name");
             teamMemberDao.delete(name);
             taskDao.deleteByTeam(name);
             int count = teamDao.delete(name);
     
             if (count == 0) {
-                out.println("<p>해당 팀이 없습니다.</p>");
-            } else {
-                out.println("<p>삭제하였습니다.</p>");
-            }
+                throw new Exception ("<p>해당 팀이 없습니다.</p>");
+            } 
+            response.sendRedirect("list");
         } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<meta charset='UTF-8'>");
+            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
+            out.println("<title>팀 삭제</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>팀 삭제 결과</h1>");
             out.println("<p>삭제 실패!</p>");
             e.printStackTrace(out);
+            out.println("</body>");
+            out.println("</html>");
         }
-        out.println("</body>");
-        out.println("</html>");
     }
     
 }

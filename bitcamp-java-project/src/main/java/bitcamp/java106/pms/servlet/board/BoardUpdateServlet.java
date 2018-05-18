@@ -27,39 +27,41 @@ public class BoardUpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
+        request.setCharacterEncoding("UTF-8");
         
-        Board board = new Board();
-        board.setNo(Integer.parseInt(request.getParameter("no")));
-        board.setTitle(request.getParameter("title"));
-        board.setContent(request.getParameter("content"));
         
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset='UTF-8'>");
-        
-        out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-        
-        out.println("<title>게시물 변경</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>게시물 변경 결과</h1>");
         
         try {
+            Board board = new Board();
+            board.setNo(Integer.parseInt(request.getParameter("no")));
+            board.setTitle(request.getParameter("title"));
+            board.setContent(request.getParameter("content"));
             int count = boardDao.update(board);
             if (count == 0) {
-                out.println("<p>해당 게시물이 존재하지 않습니다.</p>");
-            } else {
-                out.println("<p>변경하였습니다.</p>");
+                throw new Exception("<p>해당 게시물이 존재하지 않습니다.</p>");
             }
+            
+            response.sendRedirect("list");
         } catch (Exception e) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<meta charset='UTF-8'>");
+            
+            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
+            
+            out.println("<title>게시물 변경</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>게시물 변경 결과</h1>");
             out.println("<p>변경 실패!</p>");
+            out.println("<pre>");
             e.printStackTrace(out);
+            out.println("</pre>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        out.println("</body>");
-        out.println("</html>");
     }
 }
 

@@ -3,6 +3,7 @@ package bitcamp.java106.pms.servlet.task;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -42,22 +43,12 @@ public class TaskUpdateServlet extends HttpServlet {
                          HttpServletResponse response) throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
-        String teamName = request.getParameter("teamName");
-        
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset='UTF-8'>");
-        out.printf("<meta http-equiv='Refresh' content='1;url=list?teamName=%s\n'>", teamName);
-        out.printf("<title>'%s'팀의 작업 변경</title>", teamName);
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>작업 변경</h1>");
         
+        String teamName = null;
         try {
+            teamName = request.getParameter("teamName");
             Task task = new Task()
                 .setNo(Integer.parseInt(request.getParameter("no")))
                 .setTitle(request.getParameter("title"))
@@ -69,16 +60,26 @@ public class TaskUpdateServlet extends HttpServlet {
             
             int count = taskDao.update(task);
             if (count == 0) {
-                out.println("<p>해당 작업이 없습니다.</p>");
-            } else {
-                out.println("<p>변경하였습니다.</p>");
-            }
+                throw new Exception ("<p>해당 작업이 없습니다.</p>");
+            } 
+            response.sendRedirect("list?teamName=" + 
+                    URLEncoder.encode(teamName, "UTF-8"));
         } catch (Exception e) {
+            PrintWriter out = response.getWriter();
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<meta charset='UTF-8'>");
+            out.printf("<meta http-equiv='Refresh' content='1;url=list?teamName=%s\n'>", teamName);
+            out.printf("<title>'%s'팀의 작업 변경</title>", teamName);
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>작업 변경</h1>");
             out.println("<p>변경 실패!</p>");
             e.printStackTrace(out);
+            out.println("</body>");
+            out.println("</html>");
         }
-        out.println("</body>");
-        out.println("</html>");
     }
 
 }

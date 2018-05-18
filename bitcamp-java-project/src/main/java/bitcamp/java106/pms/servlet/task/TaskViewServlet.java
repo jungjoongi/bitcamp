@@ -62,7 +62,7 @@ public class TaskViewServlet extends HttpServlet {
             out.println("<table border='1'>");
             out.println("<tr>");
             out.printf("<th>팀명</th>"
-                    + "<td><input type='text' name='teamName' value='%s'></td>\n", task.getTeam().getName());
+                    + "<td><input type='text' name='teamName' value='%s' readonly></td>\n", task.getTeam().getName());
             out.println("</tr>");
             out.println("<tr>");
             out.printf("<th>작업명</th>"
