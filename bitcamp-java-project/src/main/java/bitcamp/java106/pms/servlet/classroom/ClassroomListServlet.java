@@ -11,11 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java106.pms.dao.BoardDao;
 import bitcamp.java106.pms.dao.ClassroomDao;
 import bitcamp.java106.pms.domain.Classroom;
-import bitcamp.java106.pms.server.ServerRequest;
-import bitcamp.java106.pms.server.ServerResponse;
 import bitcamp.java106.pms.servlet.InitServlet;
 
 @SuppressWarnings("serial")
@@ -27,24 +24,48 @@ public class ClassroomListServlet extends HttpServlet {
     public void init() throws ServletException {
         classroomDao = InitServlet.getApplicationContext().getBean(ClassroomDao.class);
     }
-    
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/plain;charset=UTF-8");
+    protected void doGet(
+            HttpServletRequest request, 
+            HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<title>강의 목록</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>강의 목록</h1>");
         
         try {
             List<Classroom> list = classroomDao.selectList();
+            
+            out.println("<p><a href='form.html'>새 강의</a></p>");
+            out.println("<table border='1'>");
+            out.println("<tr>");
+            out.println("    <th>번화</th><th>강의명</th><th>기간</th><th>강의실</th>");
+            out.println("</tr>");
+            
             for (Classroom classroom : list) {
-                out.printf("%d, %s, %s ~ %s, %s\n",
-                    classroom.getNo(), classroom.getTitle(), 
-                    classroom.getStartDate(), classroom.getEndDate(),
-                    classroom.getRoom());
+                out.println("<tr>");
+                out.printf("    <td>%d</td>\n", classroom.getNo());
+                out.printf("    <td><a href='view?no=%d'>%s</a></td>\n", 
+                        classroom.getNo(), classroom.getTitle());
+                out.printf("    <td>%s~%s</td>\n", classroom.getStartDate(), classroom.getEndDate());
+                out.printf("    <td>%s</td>\n", classroom.getRoom());
+                out.println("</tr>");
             }
+            out.println("</table>");
         } catch (Exception e) {
-            out.println("목록 가져오기 실패!");
+            out.println("<p>목록 가져오기 실패!</p>");
             e.printStackTrace(out);
         }
+        out.println("</body>");
+        out.println("</html>");
     }
 }
 
