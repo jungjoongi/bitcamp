@@ -7,6 +7,7 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -94,8 +95,10 @@ public class TaskAddServlet extends HttpServlet {
     
             out.println("</form>");
         } catch (Exception e) {
-            out.println("<p>목록 가져오기 실패!</p>");
-            e.printStackTrace(out);
+            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
+            request.setAttribute("error", e);
+            request.setAttribute("title", "작업 등록 실패");
+            요청배달자.forward(request, response);
             
         }
 

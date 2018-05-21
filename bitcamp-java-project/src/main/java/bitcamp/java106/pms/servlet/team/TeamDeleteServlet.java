@@ -3,6 +3,7 @@ package bitcamp.java106.pms.servlet.team;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,20 +49,10 @@ public class TeamDeleteServlet extends HttpServlet {
             } 
             response.sendRedirect("list");
         } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<meta charset='UTF-8'>");
-            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-            out.println("<title>팀 삭제</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>팀 삭제 결과</h1>");
-            out.println("<p>삭제 실패!</p>");
-            e.printStackTrace(out);
-            out.println("</body>");
-            out.println("</html>");
+            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
+            request.setAttribute("error", e);
+            request.setAttribute("title", "팀 삭제 실패");
+            요청배달자.forward(request, response);
         }
     }
     

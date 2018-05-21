@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,22 +46,10 @@ public class TeamAddServlet extends HttpServlet {
             out.println("<p>등록 성공!</p>");
             response.sendRedirect("list");
         } catch (Exception e) {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<meta charset='UTF-8'>");
-            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-            
-            out.println("<title>팀 등록</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>팀 등록 결과</h1>");
-            out.println("<p>등록 실패!</p>");
-            out.println("<pre>");
-            e.printStackTrace(out);
-            out.println("</pre>");
-            out.println("</body>");
-            out.println("</html>");
+            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
+            request.setAttribute("error", e);
+            request.setAttribute("title", "팀 등록 실패");
+            요청배달자.forward(request, response);
         }
     }
 }

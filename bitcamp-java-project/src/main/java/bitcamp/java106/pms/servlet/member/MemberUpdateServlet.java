@@ -4,6 +4,7 @@ package bitcamp.java106.pms.servlet.member;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,24 +44,10 @@ public class MemberUpdateServlet extends HttpServlet {
             }
             response.sendRedirect("list");
         } catch (Exception e) {
-            response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<meta charset='UTF-8'>");
-            out.println("<meta http-equiv='Refresh' content='1;url=list'>");
-            out.println("<title>회원 변경</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>회원 변경 결과</h1>");
-            out.println("<p>변경 실패!</p>");
-            out.println("<pre>");
-            e.printStackTrace(out);
-            out.println("</pre>");
-            out.println("</body>");
-            out.println("</html>");
+            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
+            request.setAttribute("error", e);
+            request.setAttribute("title", "회원 변경 실패");
+            요청배달자.forward(request, response);
         }
     }
 

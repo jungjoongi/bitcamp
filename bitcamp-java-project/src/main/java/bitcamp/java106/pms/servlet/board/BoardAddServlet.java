@@ -38,13 +38,9 @@ public class BoardAddServlet extends HttpServlet {
             response.sendRedirect("list");
         } catch (Exception e) {
             RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
-            
-            // 2) 다른 서블릿에게 실행을 위임하기 전에 그 서블릿에 전달할 데이터가 있다면,
-            //    ServletRequest 보관소에 담아라
             request.setAttribute("error", e);
             request.setAttribute("title", "게시물 등록 실패");
-            // 3) 지정된 서블릿으로 실행을 위임한다.
-           요청배달자.forward(request, response);
+            요청배달자.forward(request, response);
         }
     }
 }

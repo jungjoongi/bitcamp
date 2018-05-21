@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.sql.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,20 +66,10 @@ public class TaskUpdateServlet extends HttpServlet {
             response.sendRedirect("list?teamName=" + 
                     URLEncoder.encode(teamName, "UTF-8"));
         } catch (Exception e) {
-            PrintWriter out = response.getWriter();
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<meta charset='UTF-8'>");
-            out.printf("<meta http-equiv='Refresh' content='1;url=list?teamName=%s\n'>", teamName);
-            out.printf("<title>'%s'팀의 작업 변경</title>", teamName);
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>작업 변경</h1>");
-            out.println("<p>변경 실패!</p>");
-            e.printStackTrace(out);
-            out.println("</body>");
-            out.println("</html>");
+            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
+            request.setAttribute("error", e);
+            request.setAttribute("title", "작업 변경 실패");
+            요청배달자.forward(request, response);
         }
     }
 
