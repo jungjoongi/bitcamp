@@ -29,7 +29,6 @@ public class BoardUpdateServlet extends HttpServlet {
                           HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        request.setCharacterEncoding("UTF-8");
         
         
         
