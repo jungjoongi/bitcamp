@@ -3,7 +3,6 @@ package bitcamp.java106.pms.servlet.classroom;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,23 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+
 import bitcamp.java106.pms.dao.ClassroomDao;
-import bitcamp.java106.pms.dao.TeamDao;
-import bitcamp.java106.pms.dao.TeamMemberDao;
 import bitcamp.java106.pms.domain.Classroom;
-import bitcamp.java106.pms.domain.Member;
-import bitcamp.java106.pms.domain.Team;
-import bitcamp.java106.pms.servlet.InitServlet;
+import bitcamp.java106.pms.support.WebApplicationContextUtils;
 
 @SuppressWarnings("serial")
 @WebServlet("/classroom/view")
 public class ClassroomViewServlet extends HttpServlet {
 
-    ClassroomDao ClassroomDao;
+    ClassroomDao classroomDao;
     
     @Override
     public void init() throws ServletException {
-        ClassroomDao = InitServlet.getApplicationContext().getBean(ClassroomDao.class);
+        ApplicationContext iocContainer = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        classroomDao = iocContainer.getBean(ClassroomDao.class);
     }
     
     @Override
@@ -51,7 +49,7 @@ public class ClassroomViewServlet extends HttpServlet {
         out.println("<h1>강의 보기</h1>");
         
         try {
-            Classroom classroom = ClassroomDao.selectOne(no);
+            Classroom classroom = classroomDao.selectOne(no);
     
             if (classroom == null) {
                 throw new Exception("유효하지 않은 팀입니다.");
