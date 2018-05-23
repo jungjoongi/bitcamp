@@ -1,8 +1,9 @@
-//쿠키 : 클라이언트에 데이터를 보관하는 방법 
+//쿠키 : 한글데이터 보내기 
 package step10.ex1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,16 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/step10/ex1/exam01")
-public class Exam01 extends HttpServlet {
+@WebServlet("/step10/ex1/exam03")
+public class Exam03 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         //쿠키 보내기
-        //1)key-value 한 쌍의 값을 갖는 쿠키 객체를 만든다 
         
-        Cookie cookie1 = new Cookie("c1", "aaa");
-        Cookie cookie2 = new Cookie("c2", "123");
+        // 쿠키 데이터의 조건 :
+        // => 쿠키의 데이터는 문자열만 가능하다.
+        // => 응답 헤더로 보내기 때문에 반드시 URL인코딩 해야한다.
+        // => Tomcat9에서는 한글 데이터를 보내고 받을 수 있다.
+        //    만약 Tomcat8이하 버전이나 다른 서블릿 컨테이너를 사용한다면 한글이 꺠질 수 있다.
+        //    그런경우에는 URL인코딩 하여 보내라
+        Cookie cookie1 = new Cookie("c1", URLEncoder.encode("홍길동", "UTF-8"));
+        Cookie cookie2 = new Cookie("c2", URLEncoder.encode("임꺽정", "UTF-8"));
         
         //2)응답 헤더에 쿠키 정보를 출력한다
         response.addCookie(cookie1);
@@ -31,10 +37,6 @@ public class Exam01 extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("쿠키 보냄");
         
-        //쿠키? 
-        //웹 서버에서  데이터를 보내 웹 브라우저에 저장하는 것
-        //웹브라우저는 웹서버로부터 받은 데이터를 보관하다가 웹 서버에 요청할 때마다 다시 보낸다.
-        //예) 쿠폰..
         
     }
 }

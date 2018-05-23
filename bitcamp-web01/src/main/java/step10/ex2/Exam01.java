@@ -1,5 +1,5 @@
-//쿠키 : 클라이언트에 데이터를 보관하는 방법 
-package step10.ex1;
+//쿠키 : 유효기간 설정하기
+package step10.ex2;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,20 +12,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/step10/ex1/exam01")
+@WebServlet("/step10/ex2/exam01")
 public class Exam01 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        //쿠키 보내기
-        //1)key-value 한 쌍의 값을 갖는 쿠키 객체를 만든다 
-        
         Cookie cookie1 = new Cookie("c1", "aaa");
+        cookie1.setMaxAge(20); // 유지시간(초)을 설정한다.
+        // 유효기간을 설정하면 ㅇ웹브러우저를 닫아도, 컴퓨터를 종료해도 유지된다.
+        // 즉 파일시스템(HDD등)에 보관되기 때문에 컴퓨터를 꺼도 유지된다.
         Cookie cookie2 = new Cookie("c2", "123");
+        cookie2.setMaxAge(40); // 유지시간(초)을 설정한다.
+        Cookie cookie3 = new Cookie("c3", "ccc");
+        // 유효기간을 설정하지 않으면 웹 브라우저를 실행하는 동안만 유효하다
         
         //2)응답 헤더에 쿠키 정보를 출력한다
         response.addCookie(cookie1);
         response.addCookie(cookie2);
+        response.addCookie(cookie3);
         
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();

@@ -12,24 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/step10/ex1/exam01")
-public class Exam01 extends HttpServlet {
+@WebServlet("/step10/ex1/exam02")
+public class Exam02 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        //쿠키 보내기
-        //1)key-value 한 쌍의 값을 갖는 쿠키 객체를 만든다 
+        //쿠키 받기
+        // => 쿠키는 서버가 요청하지 않아도 웹브라우저에게 무조건 보낸다.
+        //    물론 웹서버가 웹브라우저에 쿠키를 보낼 떄 조건에 따라 웹서버에 보낸다.
         
-        Cookie cookie1 = new Cookie("c1", "aaa");
-        Cookie cookie2 = new Cookie("c2", "123");
+        // 1) 쿠키 가져오기
+        Cookie[] cookies = request.getCookies();
         
-        //2)응답 헤더에 쿠키 정보를 출력한다
-        response.addCookie(cookie1);
-        response.addCookie(cookie2);
         
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("쿠키 보냄");
+        out.println("클라이언트가 보낸 쿠키들");
+        
+        for (Cookie cookie : cookies) {
+            out.printf("%s=%s\n", cookie.getName(), cookie.getValue());
+        }
         
         //쿠키? 
         //웹 서버에서  데이터를 보내 웹 브라우저에 저장하는 것

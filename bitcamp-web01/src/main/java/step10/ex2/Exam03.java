@@ -1,5 +1,5 @@
-//쿠키 : 클라이언트에 데이터를 보관하는 방법 
-package step10.ex1;
+//쿠키 : 쿠키를 사용할 범위 정하기
+package step10.ex2;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,20 +12,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/step10/ex1/exam01")
-public class Exam01 extends HttpServlet {
+@WebServlet("/step10/ex2/exam03")
+public class Exam03 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-        //쿠키 보내기
-        //1)key-value 한 쌍의 값을 갖는 쿠키 객체를 만든다 
-        
         Cookie cookie1 = new Cookie("c1", "aaa");
+        cookie1.setPath("/");
         Cookie cookie2 = new Cookie("c2", "123");
+        cookie2.setPath("/bitcamp-web01/step10/ex2");
         
-        //2)응답 헤더에 쿠키 정보를 출력한다
+        Cookie cookie3 = new Cookie("c3", "ccc");
+        cookie3.setPath("/bitcamp-web01/step10/ex2/exam04");
+        
         response.addCookie(cookie1);
         response.addCookie(cookie2);
+        response.addCookie(cookie3);
         
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
