@@ -22,7 +22,7 @@ public class Exam04 extends HttpServlet {
         
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println("클라이언트가 보낸 쿠키들");
+        out.println("클라이언트가 보낸 쿠키들"); 
         
         for (Cookie cookie : cookies) {
             out.printf("%s=%s\n", cookie.getName(), cookie.getValue());
