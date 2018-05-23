@@ -50,6 +50,7 @@ public class TaskListServlet extends HttpServlet {
         out.println("<title>작업 목록</title>");
         out.println("</head>");
         out.println("<body>");
+        request.getRequestDispatcher("/header").include(request, response);
         out.printf("<h1>%s의 작업 목록 </h1>\n", teamName);
         
         try {

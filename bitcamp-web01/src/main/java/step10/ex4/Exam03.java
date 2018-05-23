@@ -13,11 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
-@WebServlet("/step10/ex4/exam01")
-public class Exam01 extends HttpServlet {
+@WebServlet("/step10/ex4/exam03")
+public class Exam03 extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        int age = Integer.parseInt(request.getParameter("age"));
         
+        // 파라미터로 받은 데이터를 다른 서블릿에서 아용할 수 있도록 세션에 보관한다.
+        HttpSession session = request.getSession();
+        session.setAttribute("age", age);
         
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -25,12 +30,12 @@ public class Exam01 extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
-        out.println("<title>페이지1</title>");
+        out.println("<title>페이지3</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h1>페이지1</h1>");
-        out.println("<form action='exam02' method='post'>");
-        out.println("이름: <input type='text' name='name'><br>");
+        out.println("<h1>페이지3</h1>");
+        out.println("<form action='exam04' method='post'>");
+        out.println("전화번호: <input type='text' name='tel'><br>");
         out.println("<button>다음</button>");
         out.println("</form>");
         out.println("</body>");

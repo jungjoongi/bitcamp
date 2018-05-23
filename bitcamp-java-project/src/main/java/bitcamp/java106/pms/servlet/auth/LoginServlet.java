@@ -10,6 +10,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 
@@ -91,11 +92,15 @@ public class LoginServlet extends HttpServlet {
         response.addCookie(cookie);
         try {
             Member member = memberDao.selectOneWithPassword(id, password);
+            
+            HttpSession session = request.getSession();
 
             if (member != null) {
                 response.sendRedirect(request.getContextPath()); // '/'를 리턴한다.
+                session.setAttribute("loginUser", member);
             } else {
-
+                session.invalidate();
+                
                 response.setContentType("text/html;charset=UTF-8");
                 PrintWriter out = response.getWriter();
                 out.println("<!DOCTYPE html>");
