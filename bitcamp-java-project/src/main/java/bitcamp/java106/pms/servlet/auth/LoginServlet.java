@@ -33,6 +33,10 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        session.setAttribute("refererUrl", request.getHeader("Referer"));
+
         String id = "";
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -92,26 +96,31 @@ public class LoginServlet extends HttpServlet {
         response.addCookie(cookie);
         try {
             Member member = memberDao.selectOneWithPassword(id, password);
-            
-            HttpSession session = request.getSession();
 
-            if (member != null) {
-                response.sendRedirect(request.getContextPath()); // '/'를 리턴한다.
+            HttpSession session = request.getSession();
+            if (member!=null) { //로그인 성공
                 session.setAttribute("loginUser", member);
-            } else {
-                session.invalidate();
+                //로그인 하기 전의 페이지로 이동
+                String refererUrl = (String) session.getAttribute("refererUrl");
+                session.setAttribute("refererUrl", null);
                 
+                if (refererUrl == null) {
+                    //이전 페이지가 없다면 메인 화면으로 이동
+                    response.sendRedirect(request.getContextPath());
+                } else { //이전 페이지가 있다면 그 페이지로 이동
+                    response.sendRedirect(refererUrl);
+                }
+                return;
+
+            } else {
                 response.setContentType("text/html;charset=UTF-8");
                 PrintWriter out = response.getWriter();
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
                 out.println("<meta charset='UTF-8'>");
-                String refererUrl = request.getHeader("Referer");
-                if (refererUrl != null) {
-                    out.printf("<meta http-equiv='Refresh' content='5;url=%s'>",
+                out.printf("<meta http-equiv='Refresh' content='5;url=%s'>",
                         request.getContextPath() + "/auth/login");
-                }
                 out.println("<title>로그인</title>");
                 out.println("</head>");
                 out.println("<body>");
