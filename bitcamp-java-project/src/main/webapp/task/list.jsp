@@ -16,7 +16,7 @@
 out.flush();
 request.getRequestDispatcher("/header.jsp").include(request, response);%>
 
-<h1><a href='../team/view?name=<%=request.getParameter("teamName")%>'>team2</a>의 작업 목록(MVC)</h1>
+<h1><a href='../team/view?name=<%=request.getParameter("teamName")%>'><%=request.getParameter("teamName")%></a>의 작업 목록(MVC)</h1>
 <p><a href='add?teamName=<%=request.getParameter("teamName")%>'>새작업</a></p>
 <table border='1'>
 <tr>
