@@ -1,10 +1,8 @@
 package bitcamp.java106.pms.servlet.team;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +23,9 @@ public class TeamAddServlet extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
-        ApplicationContext iocContainer = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        ApplicationContext iocContainer = 
+                WebApplicationContextUtils.getWebApplicationContext(
+                        this.getServletContext()); 
         teamDao = iocContainer.getBean(TeamDao.class);
     }
 
@@ -34,10 +34,6 @@ public class TeamAddServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
         
-        request.setCharacterEncoding("UTF-8");
-
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             Team team = new Team();
             team.setName(request.getParameter("name"));
@@ -45,18 +41,24 @@ public class TeamAddServlet extends HttpServlet {
             team.setMaxQty(Integer.parseInt(request.getParameter("maxQty")));
             team.setStartDate(Date.valueOf(request.getParameter("startDate")));
             team.setEndDate(Date.valueOf(request.getParameter("endDate")));
+            
             teamDao.insert(team);
-            out.println("<p>등록 성공!</p>");
             response.sendRedirect("list");
+            
         } catch (Exception e) {
-            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
             request.setAttribute("error", e);
-            request.setAttribute("title", "팀 등록 실패");
-            요청배달자.forward(request, response);
+            request.setAttribute("title", "팀 등록 실패!");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
+    
 }
 
+//ver 42 - JSP 적용
+//ver 40 - CharacterEncodingFilter 필터 적용.
+//         request.setCharacterEncoding("UTF-8") 제거
+//ver 39 - forward 적용
+//ver 38 - redirect 적용
 //ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경

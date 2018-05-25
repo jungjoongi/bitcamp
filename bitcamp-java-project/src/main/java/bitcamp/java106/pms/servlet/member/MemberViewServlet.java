@@ -1,9 +1,7 @@
 package bitcamp.java106.pms.servlet.member;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,7 +22,9 @@ public class MemberViewServlet extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
-        ApplicationContext iocContainer = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        ApplicationContext iocContainer = 
+                WebApplicationContextUtils.getWebApplicationContext(
+                        this.getServletContext()); 
         memberDao = iocContainer.getBean(MemberDao.class);
     }
 
@@ -33,27 +33,29 @@ public class MemberViewServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
 
+        String id = request.getParameter("id");
         
         try {
-            String id = request.getParameter("id");
             Member member = memberDao.selectOne(id);
-    
             if (member == null) {
                 throw new Exception("유효하지 않은 멤버 아이디입니다.");
             }
             request.setAttribute("member", member);
             response.setContentType("text/html;charset=UTF-8");
-            request.getRequestDispatcher("/member/view.jsp").include(request, response);
-            
+            request.getRequestDispatcher("/member/view.jsp").forward(request, response);
+               
         } catch (Exception e) {
-            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
             request.setAttribute("error", e);
-            request.setAttribute("title", "회원 조회 실패");
-            요청배달자.forward(request, response);
+            request.setAttribute("title", "회원 상세조회 실패!");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
 }
 
+//ver 42 - JSP 적용
+//ver 40 - CharacterEncodingFilter 필터 적용.
+//         request.setCharacterEncoding("UTF-8") 제거
+//ver 39 - forward 적용
 //ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경

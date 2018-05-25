@@ -1,10 +1,7 @@
-// Controller 규칙에 따라 메서드 작성
 package bitcamp.java106.pms.servlet.classroom;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +22,9 @@ public class ClassroomViewServlet extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
-        ApplicationContext iocContainer = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+        ApplicationContext iocContainer = 
+                WebApplicationContextUtils.getWebApplicationContext(
+                        this.getServletContext()); 
         classroomDao = iocContainer.getBean(ClassroomDao.class);
     }
     
@@ -34,27 +33,27 @@ public class ClassroomViewServlet extends HttpServlet {
             HttpServletRequest request, 
             HttpServletResponse response) throws ServletException, IOException {
 
-        
-        
         try {
             int no = Integer.parseInt(request.getParameter("no"));
             Classroom classroom = classroomDao.selectOne(no);
+    
             if (classroom == null) {
-                throw new Exception("유효하지 않은 팀입니다.");
+                throw new Exception("유효하지 않은 강의입니다.");
             }
             request.setAttribute("classroom", classroom);
             response.setContentType("text/html;charset=UTF-8");
-            request.getRequestDispatcher("/classroom/view.jsp").include(request, response);
+            request.getRequestDispatcher("/classroom/view.jsp").forward(request, response);
             
         } catch (Exception e) {
-            RequestDispatcher 요청배달자 = request.getRequestDispatcher("/error");
             request.setAttribute("error", e);
-            request.setAttribute("title", "게시물 등록 실패");
-           요청배달자.forward(request, response);
+            request.setAttribute("title", "강의 상세조회 실패!");
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
     }
 }
 
+//ver 42 - JSP 적용
+//ver 39 - forward 적용
 //ver 37 - 컨트롤러를 서블릿으로 변경
 //ver 31 - JDBC API가 적용된 DAO 사용
 //ver 28 - 네트워크 버전으로 변경

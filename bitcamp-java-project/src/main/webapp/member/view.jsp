@@ -1,6 +1,6 @@
 <%@page import="bitcamp.java106.pms.domain.Member"%>
-<%@page import="bitcamp.java106.pms.domain.Classroom"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" 
+    contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,9 +9,12 @@
 <title>멤버 보기</title>
 </head>
 <body>
-<div id='header'>
-<a href='/bitcamp-java-project/auth/login'>로그인</a></div>
-<h1>멤버 보기</h1>
+
+<%
+out.flush();
+request.getRequestDispatcher("/header.jsp").include(request, response);%>
+
+<h1>멤버 보기(MVC)</h1>
 <%
 Member member = (Member)request.getAttribute("member");
 %>
@@ -33,5 +36,6 @@ Member member = (Member)request.getAttribute("member");
 </form>
 </body>
 </html>
+
 
     
