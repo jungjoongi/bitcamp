@@ -13,9 +13,7 @@
 <jsp:include page="/header.jsp"></jsp:include>
 
 <h1>팀 보기(MVC)</h1>
-<%
-Team team = (Team)request.getAttribute("team");
-%>
+<jsp:useBean id="team" class="bitcamp.java106.pms.domain.Team" scope="request"></jsp:useBean>
 <form action='update' method='post'>
 <table border='1'>
 <tr>
@@ -47,10 +45,7 @@ Team team = (Team)request.getAttribute("team");
 <a href='../task/list?teamName=<%=team.getName()%>'>작업목록</a>
 </p>
 </form>
-
-<%
-out.flush();
-request.getRequestDispatcher("/team/member/list.jsp").include(request, response);%>
+<jsp:include page="/team/member/list.jsp"></jsp:include>
 
 </body>
 </html>

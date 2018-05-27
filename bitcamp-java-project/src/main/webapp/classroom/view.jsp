@@ -12,10 +12,8 @@
 
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1>강의 보기(MVC)</h1>
-<%
-Classroom classroom = (Classroom)request.getAttribute("classroom");
-%>
+<h1>강의 보기(MVC + JSP 전용태그)</h1>
+<jsp:useBean id="classroom" class="bitcamp.java106.pms.domain.Classroom" scope="request"></jsp:useBean>
 <form action='update' method='post'>
 <input type='hidden' name='no' value='<%=request.getParameter("no")%>'>
 <table border='1'>

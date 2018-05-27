@@ -12,10 +12,8 @@
 
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1>멤버 보기(MVC)</h1>
-<%
-Member member = (Member)request.getAttribute("member");
-%>
+<h1>멤버 보기(MVC + JSP 전용태그)</h1>
+<jsp:useBean id="member" class="bitcamp.java106.pms.domain.Member" scope="request"></jsp:useBean>
 <form action='update' method='post'>
 <table border='1'>
 <tr><th>아이디</th><td>

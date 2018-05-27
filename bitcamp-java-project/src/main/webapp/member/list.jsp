@@ -13,14 +13,17 @@
 
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1>멤버 목록(MVC)</h1>
+<h1>멤버 목록(MVC + JSP 전용태그)</h1>
 <p><a href='form.html'>새회원</a></p>
 <table border='1'>
 <tr>
     <th>아이디</th><th>이메일</th>
 </tr>
+<jsp:useBean id="list"
+            type="java.util.List<Member>"
+            class="java.util.ArrayList"
+            scope="request"/>
 <%
-List<Member> list = (List<Member>)request.getAttribute("list");
 for (Member member : list) {
 %>
 <tr>
