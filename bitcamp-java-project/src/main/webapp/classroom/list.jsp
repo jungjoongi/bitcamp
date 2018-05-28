@@ -13,7 +13,7 @@
 
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1>강의 목록(MVC + JSP 전용태그)</h1>
+<h1>강의 목록(MVC + JSP 전용태그 + EL)</h1>
 <p><a href='form.html'>새 강의</a></p>
 <table border='1'>
 <tr>
@@ -25,12 +25,13 @@
             scope="request"/>
 <%
 for (Classroom classroom : list) {
+    pageContext.setAttribute("classroom", classroom);
 %>
 <tr>
     <td><%=classroom.getNo()%></td>
-    <td><a href='view?no=<%=classroom.getNo()%>'><%=classroom.getTitle()%></a></td>
-    <td><%=classroom.getStartDate()%>~<%=classroom.getEndDate()%></td>
-    <td><%=classroom.getRoom()%></td>
+    <td><a href='view?no=${classroom.no}'>${classroom.title}</a></td>
+    <td>${classroom.startDate}~${classroom.endDate}</td>
+    <td>${classroom.room}</td>
 </tr>
 <%}%>
 </table>

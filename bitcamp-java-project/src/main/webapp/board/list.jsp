@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1>게시물 목록(MVC + JSP 전용태그)</h1>
+<h1>게시물 목록(MVC + JSP 전용태그 + EL)</h1>
 <p><a href='form.html'>새 글</a></p>
 <table border='1'>
 <tr>
@@ -24,11 +24,12 @@
             scope="request"/>
 <%
 for (Board board : list) {
+    pageContext.setAttribute("board", board);
 %>
 <tr>
-    <td><%=board.getNo()%></td>
-    <td><a href='view?no=<%=board.getNo()%>'><%=board.getTitle()%></a></td>
-    <td><%=board.getCreatedDate()%></td>
+    <td>${board.no}</td>
+    <td><a href='view?no=${board.no}'>${board.title}</a></td>
+    <td>${board.createdDate}</td>
 </tr>
 <%}%>
 </table>
