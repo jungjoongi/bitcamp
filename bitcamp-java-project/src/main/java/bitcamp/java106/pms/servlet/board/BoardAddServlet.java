@@ -53,8 +53,7 @@ public class BoardAddServlet extends HttpServlet {
             board.setContent(request.getParameter("content"));
 
             boardDao.insert(board);
-            response.sendRedirect("list");
-            
+            request.setAttribute("viewUrl", "redirect:list.do");
         } catch (Exception e) {
             request.setAttribute("error", e);
             request.setAttribute("title", "게시물 등록 실패!");

@@ -40,9 +40,8 @@ public class BoardViewServlet extends HttpServlet {
                 throw new Exception("유효하지 않은 게시물 번호입니다.");
             }
             request.setAttribute("board", board);
+            request.setAttribute("viewUrl", "/board/view.jsp");
 
-            response.setContentType("text/html;charset=UTF-8");
-            request.getRequestDispatcher("/board/view.jsp").include(request, response);
             
         } catch (Exception e) {
             request.setAttribute("error", e);

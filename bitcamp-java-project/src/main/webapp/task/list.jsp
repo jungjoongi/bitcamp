@@ -13,8 +13,8 @@
 
 <jsp:include page="/header.jsp"></jsp:include>
 
-<h1><a href='../team/view?name=${param.teamName}'>${param.teamName}</a>의 작업 목록(MVC)</h1>
-<p><a href='add?teamName=${param.teamName}'>새작업</a></p>
+<h1><a href='../team/view.do?name=${param.teamName}'>${param.teamName}</a>의 작업 목록(MVC)</h1>
+<p><a href='add.do?teamName=${param.teamName}'>새작업</a></p>
 <table border='1'>
 <tr>
     <th>번호</th><th>작업명</th><th>기간</th><th>작업자</th>
@@ -22,7 +22,7 @@
 <c:forEach items="${list}" var="task">
 <tr>
     <td>${task.no}</td>    
-    <td><a href='view?no=${task.no}'>${task.title}</a></td>    
+    <td><a href='view.do?no=${task.no}'>${task.title}</a></td>    
     <td>${task.startDate} ~ ${task.endDate}</td>
     <td>${task.no == null ? "" : task.worker.id}</td>    
 </tr>
