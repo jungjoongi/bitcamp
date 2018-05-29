@@ -1,7 +1,7 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +9,8 @@
 <title>작업 보기</title>
 </head>
 <body>
-
-<jsp:include page="/header.jsp"></jsp:include>
-
-<h1>작업 보기(MVC + JSP 전용태그)</h1>
+<jsp:include page="/header.jsp"/>
+<h1>작업 보기(MVC + JSP 전용 태그 + EL + JSTL)</h1>
 <form action='update.do' method='post'>
 <input type='hidden' name='no' value='${param.no}'>
 <table border='1'>
@@ -35,8 +33,7 @@
     <td>
         <select name='memberId'>
             <option value=''>--선택 안함--</option>
-            
-<c:forEach items="${members}" var="member">
+<c:forEach items="${members}" var="member">            
             <option ${member.id == task.worker.id ? "selected" : ""}>${member.id}</option>
 </c:forEach>
         </select>
