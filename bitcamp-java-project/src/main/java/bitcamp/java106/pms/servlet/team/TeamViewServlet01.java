@@ -45,9 +45,7 @@ public class TeamViewServlet01 extends HttpServlet {
             request.getRequestDispatcher("/team/view.jsp").include(request, response);
                
         } catch (Exception e) {
-            request.setAttribute("error", e);
-            request.setAttribute("title", "팀 상세조회 실패!");
-            request.getRequestDispatcher("/error.jsp").forward(request, response);
+            throw new ServletException(e);
         }
     }
 }
