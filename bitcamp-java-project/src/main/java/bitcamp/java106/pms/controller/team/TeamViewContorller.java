@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/team/view")
-public class TeamViewContorller implements PageController {
+public class TeamViewContorller {
 
     TeamDao teamDao;
     
@@ -18,8 +19,8 @@ public class TeamViewContorller implements PageController {
         this.teamDao = teamDao;
     }
 
-    @Override
-    public String service(
+    @RequestMapping
+    public String view(
             HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
 

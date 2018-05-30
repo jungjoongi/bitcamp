@@ -13,9 +13,10 @@ import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Team;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/task/add")
-public class TaskAddContorller implements PageController {
+public class TaskAddContorller {
     
     TeamDao teamDao;
     TeamMemberDao teamMemberDao;
@@ -25,8 +26,8 @@ public class TaskAddContorller implements PageController {
         this.teamMemberDao = teamMemberDao;
     }
 
-    @Override
-    public String service(
+    @RequestMapping
+    public String add(
             HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         

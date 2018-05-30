@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/team/member/delete")
-public class TeamMemberDeleteController implements PageController {
+public class TeamMemberDeleteController {
     
     TeamDao teamDao;
     TeamMemberDao teamMemberDao;
@@ -22,8 +22,8 @@ public class TeamMemberDeleteController implements PageController {
         this.teamMemberDao = teamMemberDao;
     }
     
-    @Override
-    public String service(
+    @RequestMapping
+    public String delete(
             HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         

@@ -10,9 +10,10 @@ import org.springframework.stereotype.Component;
 import bitcamp.java106.pms.controller.PageController;
 import bitcamp.java106.pms.dao.ClassroomDao;
 import bitcamp.java106.pms.domain.Classroom;
+import bitcamp.java106.pms.web.RequestMapping;
 
 @Component("/classroom/add")
-public class ClassroomAddContorller implements PageController {
+public class ClassroomAddContorller {
     
     ClassroomDao classroomDao;
     
@@ -20,8 +21,8 @@ public class ClassroomAddContorller implements PageController {
         this.classroomDao = classroomDao;
     }
     
-    @Override
-    public String service(
+    @RequestMapping
+    public String add(
             HttpServletRequest request, 
             HttpServletResponse response) throws Exception {
         
