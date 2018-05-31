@@ -1,5 +1,6 @@
 package bitcamp.java106.pms.web;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,9 @@ public class TeamContorller {
     @RequestMapping("/delete")
     public String delete(@RequestParam("name") String name, Map<String,Object> map) throws Exception {
         
-        
-        teamMemberDao.delete(name);
+        HashMap<String,Object> params = new HashMap<>();
+        params.put("teamName", name);
+        teamMemberDao.delete(params);
         taskDao.deleteByTeam(name);
         int count = teamDao.delete(name);
         if (count == 0) {
