@@ -1,5 +1,5 @@
-// 스프링 IoC컨테이너 사용
-package bitcamp.java106.step12.ex1;
+
+package bitcamp.java106.step12.ex3;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class Exam01 {
     public static void main(String[] args) throws Exception {
 
         ApplicationContext iocContainer = new ClassPathXmlApplicationContext(
-                "bitcamp/java106/step12/ex1/application-context.xml");
+                "bitcamp/java106/step12/ex3/application-context.xml");
         
         BeanUtils.printBeanNames(iocContainer);
         
