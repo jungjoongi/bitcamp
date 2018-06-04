@@ -7,7 +7,14 @@ public class Board {
     String title;
     String content;
     Date createdDate;
+    Member user;
     
+    public Member getUser() {
+        return user;
+    }
+    public void setUser(Member user) {
+        this.user = user;
+    }
     public int getNo() {
         return no;
     }
@@ -31,6 +38,11 @@ public class Board {
     }
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+    @Override
+    public String toString() {
+        return "Board [no=" + no + ", title=" + title + ", content=" + content + ", createdDate=" + createdDate
+                + ", user=" + user + "]";
     }
     
 }
