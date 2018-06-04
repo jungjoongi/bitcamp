@@ -3,6 +3,5 @@ package bitcamp.mvc.web;
 import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan("bitcamp.mvc.web")
-public class Appconfig {
-    
+public class AppConfig {
 }
