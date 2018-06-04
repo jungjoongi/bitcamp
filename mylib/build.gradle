@@ -9,12 +9,7 @@
 plugins {
     // 자바관련 작업이 정의된 플러그인
     id 'java'
-
-    // 이클립스 웹 프로젝트 설정 파일을 다루는 작업이 정의된 플러그인
-    id 'eclipse-wtp' // eclipse 플러그인 + 웹관련 작업들
-
-    //war파일을 다루는 작업이 정의된 플러그인
-    id 'war'
+    id 'eclipse' // eclipse 플러그인 + 웹관련 작업들
 }
 
 compileJava {
@@ -23,20 +18,12 @@ compileJava {
 }
 
 dependencies {
-    providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     compile 'com.google.guava:guava:23.0'
-    
     testCompile 'junit:junit:4.12'
-    // 멀티파트 데이터 추출하는 의존 라이브러리
-    compile group: 'commons-fileupload', name: 'commons-fileupload', version: '1.3.3'
-    
-    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
-    
     
     // 로컬 .jar 파일등록
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    compile fileTree(dir: 'lib', include: ['*.jar'])
 }
 
 repositories {
