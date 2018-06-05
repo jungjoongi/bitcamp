@@ -145,6 +145,7 @@ public class TaskController {
         return "/task/view.jsp";
     }
     
+    /*
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(java.sql.Date.class, new PropertyEditorSupport() {
@@ -154,6 +155,7 @@ public class TaskController {
             }
         });
     }
+    */
 }
 
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기

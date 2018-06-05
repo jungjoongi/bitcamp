@@ -86,6 +86,7 @@ public class TeamContorller {
         return "/team/view.jsp";
                
     }
+    /*
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(java.sql.Date.class, new PropertyEditorSupport() {
@@ -95,6 +96,7 @@ public class TeamContorller {
             }
         });
     }
+    */
     
 }
 

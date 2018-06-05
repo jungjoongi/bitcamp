@@ -71,7 +71,8 @@ public class ClassroomContorller {
             return "/classroom/view.jsp";
             
     }   
-    
+    // globalBindingInitializer에 등록했기 떄문에 제외해도 된다.
+    /*
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(java.sql.Date.class, new PropertyEditorSupport() {
@@ -81,6 +82,7 @@ public class ClassroomContorller {
             }
         });
     }
+    */
     
     
 }
