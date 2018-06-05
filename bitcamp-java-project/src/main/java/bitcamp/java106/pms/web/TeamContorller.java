@@ -1,14 +1,10 @@
 package bitcamp.java106.pms.web;
 
-import java.beans.PropertyEditorSupport;
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -29,7 +25,10 @@ public class TeamContorller {
         this.teamMemberDao = teamMemberDao;
         this.taskDao = taskDao;
     }
-
+    @RequestMapping("/form")
+    public void form(/*Model model*/) {
+//        model.addAttribute("프로퍼티명", "값");
+    }
     @RequestMapping("/add")
     public String add(Team team) throws Exception {
     
@@ -55,12 +54,10 @@ public class TeamContorller {
     }
     
     @RequestMapping("/list")
-    public String list(Map<String,Object> map) throws Exception {
+    public void list(Map<String,Object> map) throws Exception {
         
         List<Team> list = teamDao.selectList();
         map.put("list", list);
-        return "/team/list.jsp";
-            
     }
     
     @RequestMapping("/update")
@@ -75,7 +72,7 @@ public class TeamContorller {
     }
     
     @RequestMapping("/view")
-    public String view(@RequestParam("name")String name, Map<String,Object> map) throws Exception {
+    public void view(@RequestParam("name")String name, Map<String,Object> map) throws Exception {
 
     
         Team team = teamDao.selectOneWithMembers(name);
@@ -83,7 +80,6 @@ public class TeamContorller {
             throw new Exception("유효하지 않은 팀입니다.");
         }
         map.put("team", team);
-        return "/team/view.jsp";
                
     }
     /*

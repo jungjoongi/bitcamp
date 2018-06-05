@@ -2,8 +2,8 @@ package bitcamp.java106.pms.web;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,6 +17,11 @@ public class BoardController {
     
     public BoardController(BoardDao boardDao) {
         this.boardDao = boardDao;
+    }
+    
+    @RequestMapping("/form")
+    public void form(/*Model model*/) {
+//        model.addAttribute("프로퍼티명", "값");
     }
     
     @RequestMapping("/add")
@@ -37,11 +42,10 @@ public class BoardController {
     }
     
     @RequestMapping("/list")
-    public String list(Map<String,Object> map) throws Exception {        
+    public void list(Map<String,Object> map) throws Exception {        
             
         List<Board> list = boardDao.selectList();
         map.put("list", list);
-        return "/board/list.jsp";
     }
     
     @RequestMapping("/update")
@@ -56,14 +60,13 @@ public class BoardController {
     }
     
     @RequestMapping("/view")
-    public String view(@RequestParam("no")int no, Map<String,Object> map) throws Exception {
+    public void view(@RequestParam("no")int no, Map<String,Object> map) throws Exception {
         
         Board board = boardDao.selectOne(no);
         if (board == null) {
             throw new Exception("유효하지 않은 게시물 번호입니다.");
         }
         map.put("board", board);
-        return "/board/view.jsp";
     }
 
 }

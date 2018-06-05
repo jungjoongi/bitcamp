@@ -6,13 +6,18 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
 
-@ControllerAdvice
+import bitcamp.java106.pms.web.ClassroomController;
+import bitcamp.java106.pms.web.TaskController;
+import bitcamp.java106.pms.web.TeamContorller;
+
+@ControllerAdvice(assignableTypes= {TeamContorller.class, ClassroomController.class, TaskController.class})
 public class GlobalBindinginitializer {
     // 컨트롤러 어드바이스 @initBinder 메서드를 등록하면 
     // 각 페이지 컨트롤러마다 따로 등록할 필요가 없다.
     
     @InitBinder
     public void initBinder(WebDataBinder binder) {
+        System.out.println("GlobalBindinginitializer.initBInder()");
         binder.registerCustomEditor(java.sql.Date.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) throws IllegalArgumentException {
