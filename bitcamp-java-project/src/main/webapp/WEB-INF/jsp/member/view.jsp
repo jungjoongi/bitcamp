@@ -12,7 +12,7 @@
 <jsp:include page="../header.jsp"></jsp:include>
 
 <h1>멤버 보기(MVC + JSP 전용태그 + EL)</h1>
-<form action='update.do' method='post'>
+<form action='update' method='post'>
 <table border='1'>
 <tr><th>아이디</th><td>
     <input type='text' name='id' value='${member.id}' readonly></td></tr>
@@ -23,9 +23,9 @@
 
 </table>
 <p>
-<a href='list.do'>목록</a>
+<a href='list'>목록</a>
 <button>변경</button>
-<a href='delete.do?id=${member.id}'>삭제</a>
+<a href='delete?id=${member.id}'>삭제</a>
 </p>
 </form>
 </body>

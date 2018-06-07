@@ -19,7 +19,7 @@ if (refererUrl != null && !refererUrl.endsWith("/auth/login")) {
 </head>
 <body>
 <h1>로그인(MVC + EL)</h1>
-<form action='login.do' method='post'>
+<form action='login' method='post'>
 <table border='1'>
 <tr><th>아이디</th>
     <td><input type='text' name='id' value='${cookie.id.value}'></td></tr>
