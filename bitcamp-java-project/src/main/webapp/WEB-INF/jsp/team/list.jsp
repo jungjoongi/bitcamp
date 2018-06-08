@@ -1,8 +1,7 @@
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +9,13 @@
 <title>팀 목록</title>
 </head>
 <body>
-
-<jsp:include page="../header.jsp"></jsp:include>
-
-<h1>팀 목록(MVC + JSP 전용태그 + EL + JSTL)</h1>
+<jsp:include page="../header.jsp"/>
+<h1>팀 목록</h1>
 <p><a href='form'>새 팀</a></p>
 <table border='1'>
 <tr>
     <th>팀명</th><th>최대인원</th><th>기간</th>
 </tr>
-            
 <c:forEach items="${list}" var="team">
 <tr>
     <td><a href='${team.name}'>${team.name}</a></td>

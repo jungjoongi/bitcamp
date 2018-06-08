@@ -15,45 +15,44 @@
     
     <mvc:annotation-driven enable-matrix-variables="true"/>
     
-     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-         <property name="dataSource" ref="dataSource" />
-         <property name="mapperLocations" value="classpath*:bitcamp/java106/pms/sql/*Mapper.xml" />
-         <property name="typeAliasesPackage" 
-                   value="bitcamp.java106.pms.domain"/>
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="mapperLocations" 
+                value="classpath*:bitcamp/java106/pms/sql/*Mapper.xml" />  
+      <property name="typeAliasesPackage" 
+                value="bitcamp.java106.pms.domain"/>   
     </bean>
     
-    <!-- mybatis가 사용할 DataSource 객체 준비하기 -->
-    
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    <property name="driverClassName" value="${jdbc.driver}" />
-    <property name="url" value="${jdbc.url}" />
-    <property name="username" value="${jdbc.username}" />
-    <property name="password" value="${jdbc.password}" />
+    <bean id="dataSource" 
+          class="org.apache.commons.dbcp.BasicDataSource" 
+          destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
     </bean>
     
-    <!-- 스프링 설정 파일에서 사용할 .properties 파일 로딩하는 객체준비 -->
-    <context:property-placeholder location="classpath:bitcamp/java106/pms/sql/jdbc.properties"/>
-    
-    <!-- DAO 구현체를 자동으로 구현해주는 객체를 준비 -->
+    <context:property-placeholder 
+        location="classpath:bitcamp/java106/pms/sql/jdbc.properties"/> 
+        
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-
-    <!-- DAO 인터페이스가 선언된 패키지를 지정한다. -->
-  <property name="basePackage" value="bitcamp.java106.pms.dao"/>
-</bean>
-
-  <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
-    <property name="prefix" value="/WEB-INF/jsp/"/>
-    <property name="suffix" value=".jsp"/>
-</bean>
-
+        <property name="basePackage" value="bitcamp.java106.pms.dao" />
+    </bean>   
+    
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/auth/**"/>
             <bean class="bitcamp.java106.pms.web.interceptor.AuthCheckInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
-
 </beans>
 
 

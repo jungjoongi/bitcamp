@@ -38,7 +38,7 @@
 <a href='list'>목록</a>
 <button>변경</button>
 <a href='delete?name=${team.name}'>삭제</a>
-<a href='${team.name}/task/list'/>작업목록</a>
+<a href='${team.name}/task/list'>작업목록</a>
 </p>
 </form>
 <jsp:include page="member/list.jsp"/>

@@ -8,7 +8,7 @@
 <title>멤버 등록</title>
 </head>
 <body>
-<jsp:include page="../header.jsp"></jsp:include>
+<jsp:include page="../header.jsp"/>
 <h1>멤버 등록</h1>
 <form action="add" method="post">
 <table border='1'>
@@ -28,4 +28,6 @@
 
 </body>
 </html>
+
+
     

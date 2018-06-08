@@ -8,10 +8,10 @@
 <title>게시물 보기</title>
 </head>
 <body>
-
-<jsp:include page="../header.jsp"></jsp:include>
+<jsp:include page="../header.jsp"/>
 
 <h1>게시물 보기</h1>
+
 <form action='update' method='post'>
 <table border='1'>
 <tr><th>번호</th><td>
