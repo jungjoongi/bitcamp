@@ -47,6 +47,13 @@
     <property name="suffix" value=".jsp"/>
 </bean>
 
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="bitcamp.java106.pms.web.interceptor.AuthCheckInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
 
 

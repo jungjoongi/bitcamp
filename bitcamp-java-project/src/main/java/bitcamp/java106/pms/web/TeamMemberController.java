@@ -14,6 +14,7 @@ import bitcamp.java106.pms.dao.TeamDao;
 import bitcamp.java106.pms.dao.TeamMemberDao;
 import bitcamp.java106.pms.domain.Member;
 import bitcamp.java106.pms.domain.Team;
+
 @Controller
 @RequestMapping("/team/member")
 public class TeamMemberController {
@@ -30,12 +31,6 @@ public class TeamMemberController {
         this.teamMemberDao = teamMemberDao;
     }
     
-    
-  @RequestMapping("form")
-  public void form(/*Model model*/) {
-  }
-  
-    
     @RequestMapping("add")
     public String add(
             @RequestParam("teamName") String teamName,
@@ -49,7 +44,7 @@ public class TeamMemberController {
         Member member = memberDao.selectOne(memberId);
         if (member == null) {
             map.put("message", "해당 회원이 없습니다!");
-            return "/team/member/fail";
+            return "team/member/fail";
         }
         
         HashMap<String,Object> params = new HashMap<>();
@@ -58,7 +53,7 @@ public class TeamMemberController {
         
         if (teamMemberDao.isExist(params)) {
             map.put("message", "이미 등록된 회원입니다.");
-            return "/team/member/fail";
+            return "team/member/fail";
         }
         teamMemberDao.insert(params);
         return "redirect:../" + 
@@ -78,7 +73,7 @@ public class TeamMemberController {
         int count = teamMemberDao.delete(params);
         if (count == 0) {
             map.put("message", "해당 회원이 없습니다!");
-            return "/team/member/fail.jsp";
+            return "team/member/fail";
         }
         return "redirect:../" + 
                 URLEncoder.encode(teamName, "UTF-8");
@@ -96,6 +91,9 @@ public class TeamMemberController {
     }
 }
 
+//ver 52 - InternalResourceViewResolver 적용
+//         *.do 대신 /app/* 을 기준으로 URL 변경
+//ver 51 - Spring WebMVC 적용
 //ver 50 - DAO 변경에 맞춰 메서드 호출 변경
 //ver 49 - 요청 핸들러의 파라미터 값 자동으로 주입받기
 //ver 48 - CRUD 기능을 한 클래스에 합치기

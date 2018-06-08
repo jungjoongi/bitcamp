@@ -17,7 +17,7 @@
           resultMap="ClassroomMap" parameterType="map">
     select crno,titl,sdt,edt,room 
     from pms2_classroom
-    <!--  limit #{startIndex}, #{pageSize} -->
+    limit #{startIndex}, #{pageSize}
   </select>
   
   <select id="selectOne" 

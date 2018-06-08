@@ -8,7 +8,7 @@
     
     <description>웹 애플리케이션에 대한 설명을 적는 태그이다.</description>
     
-    <display-name>spring-webmvc</display-name>
+    <display-name>bitcamp-spring-webmvc</display-name>
     
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
