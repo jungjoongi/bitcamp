@@ -26,7 +26,7 @@ import javax.servlet.annotation.WebServlet;
 public class Exam01 implements Servlet {
     ServletConfig config;
     
-    public Exam01() {
+    public Exam01() { 
         System.out.println("Exam01()");
     }
     
