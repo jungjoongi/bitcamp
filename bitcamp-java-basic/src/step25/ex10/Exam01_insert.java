@@ -1,5 +1,5 @@
 // mybatis + spring IoC - 트랜잭션 적용 전
-package step25.ex9;
+package step25.ex10;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
