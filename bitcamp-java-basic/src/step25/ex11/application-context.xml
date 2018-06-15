@@ -14,15 +14,15 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop.xsd">
     
-    <context:component-scan base-package="step25.ex10"/>
+    <context:component-scan base-package="step25.ex11"/>
     
     <bean id="sqlSessionFactory"
           class="org.mybatis.spring.SqlSessionFactoryBean">
       <property name="dataSource" ref="dataSource" />
       <property name="mapperLocations" 
-                value="classpath*:step25/ex10/*Mapper.xml" />  
+                value="classpath*:step25/ex11/*Mapper.xml" />  
       <property name="typeAliases" 
-                value="step25.ex10.Board"/>   
+                value="step25.ex11.Board"/>   
     </bean>
     
     <bean id="dataSource" 
@@ -47,10 +47,10 @@
     </bean>
     
     <context:property-placeholder 
-        location="classpath:step25/ex10/jdbc.properties"/> 
+        location="classpath:step25/ex11/jdbc.properties"/> 
         
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="step25.ex10" />
+        <property name="basePackage" value="step25.ex11" />
     </bean>
     
     <tx:annotation-driven transaction-manager="txManager"/>
