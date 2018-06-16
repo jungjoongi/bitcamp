@@ -10,7 +10,7 @@ public interface BoardDao {
     List<Board> selectList(Map<String,Object> params);
     int insert(Board board);
     int update(Board board);  
-    Board selectOne(int no);
+    Board selectOne(int no); 
 }
 
 //ver 52 - 페이지 단위로 데이터 가져오기
