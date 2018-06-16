@@ -9,7 +9,7 @@ public interface BoardDao {
     int delete(int no) ;
     List<Board> selectList(Map<String,Object> params);
     int insert(Board board);
-    int update(Board board); 
+    int update(Board board);  
     Board selectOne(int no);
 }
 
