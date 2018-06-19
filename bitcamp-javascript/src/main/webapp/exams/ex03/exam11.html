@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>함수 - 클로저(closure) </h1>
+
+<script>
+"use strict";
+// 함수 안에 정의된 함수를 보통 클로저(closure)라 부른다.
+// => inner function, nested function 이라고도 표현한다.
+// => closure에서 바깥함수의 로컬변수를 사용할 떄,
+//    바깥함수의 호출이 끝나면 해당 로컬변수가 제거되기 떄문에
+//    클로저는 존재하지 않는 변수를 사용하는 상황이 발생한다.
+//    그래서 이런 경우를 방지하고자,
+//    바깥 함수의 로컬변수를 클로저의 별도 메모리에 복제한다.
+
+function closureMaker(fnType, count) { // 잊지마라 파라미터도 로컬변수이다.
+	
+	switch (fnType) {
+    	case "sum" :
+            return function() {
+            	var sum = 0;
+            	for (var i = 1; i <= count; i++) {
+            		sum += i;
+            	}
+            	console.log("합계 =", sum);
+            }
+    	
+    	case "factoial" :
+            return function() {
+            	var sum = 1;
+            	for (var i = 1; i <= count; i++) {
+            		sum *= i;
+            	}
+            	console.log("팩터리얼 =", sum);
+            }
+    	
+    	default:
+    		return function() {
+    		    console.log("해당함수를 지원하지 않습니다.");
+    		}
+	}
+}
+
+var fn1 = closureMaker("sum", 10);
+var fn2 = closureMaker("sum", 100);
+fn1();
+fn2();
+</script>
+</body>
+</html>

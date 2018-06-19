@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>함수 - 애로우(arrow) 함수 </h1>
+
+<script>
+"use strict";
+
+var f1 = function() {
+	return "안녕";
+};
+console.log(f1());
+
+
+var f2 = () => "안녕";
+console.log(f2());
+
+var f3 = (a,b) => a + b;
+console.log(f3(1,2));
+
+var f4 = (a,b) => {
+	var result = a + b;
+	// 여러가의 문장이 있을 때는 값을 리턴하려면 return을 명시해야한다.
+	return result;
+};
+console.log(f4(100,200));
+</script>
+</body>
+</html>

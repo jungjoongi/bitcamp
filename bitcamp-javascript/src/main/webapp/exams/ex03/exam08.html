@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>함수 - 호이스팅과 익명함수 </h1>
+
+<script>
+"use strict";
+
+console.log(v1);
+var v1 = "홍길동";
+console.log(v1);
+
+//f1(); // 실행오류!1
+var f1 = function f1() {
+	console.log("안녕");
+}
+f1();
+</script>
+</body>
+</html>
