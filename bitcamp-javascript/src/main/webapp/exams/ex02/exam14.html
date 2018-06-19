@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex02</title>
+</head>
+<body>
+<h1>변수 - 변수와 블록</h1>
+<script>
+"use strict"
+
+window.v1 = "홍길동"; // java => map.put("v1", 100);
+
+function f1() {
+	var v1 = "임꺽정";
+	
+	if (v1 == "임꺽정") {
+		console.log("임꺽정입니다.");
+		var v1 = "유관순";
+		var v2 = 100;
+	}
+	console.log("f1():", v1, v2)
+	
+}
+f1();
+
+function f2() {
+    var v1 = "임꺽정";
+    
+    console.log(v1 + "111");
+    if (v1 == "임꺽정") {
+        console.log("임꺽정입니다.");
+        var v1 = "유관순";
+        var v2 = 100;
+    }
+    console.log("f1():", v1, v2)
+    
+}
+f2();
+</script>
+</body>
+</html>
