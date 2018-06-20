@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex04</title>
+</head>
+<body>
+<h1>객체 - 객체에 소속된 함수가 같은 객체에 소속된 맴버 사용하기</h1>
+<script>
+"use strict"
+var obj = new Object();
+
+obj.name = "홍길동";
+obj.kor = 100;
+obj.eng = 90;
+obj.math = 80;
+obj.toString = function() {
+	// 자바와 달리 객체의 프로퍼티 변수를 사용할 때 반드시 this를 붙여야 한다. 생략하면 안된다.
+	return this.name + "," + this.kor + "," + this.eng + "," + this.math;
+};
+console.log(obj.toString());
+console.log(obj);
+
+obj.sum = function() {
+	return this.kor + this.eng + this.math;
+};
+
+obj.aver = function() {
+	return this.sum() / 3;
+};
+
+console.log(obj.sum(), obj.aver());
+
+</script>
+</body>
+</html>
