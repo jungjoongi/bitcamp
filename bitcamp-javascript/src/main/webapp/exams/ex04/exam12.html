@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex04</title>
+</head>
+<body>
+<h1>객체 - 인스턴스 함수를 공유하는 방법</h1>
+<script>
+"use strict"
+
+
+function Score(name, kor, eng, math) {
+	this.name = name,
+	this.kor = kor,
+	this.eng = eng,
+	this.math = math
+}
+Score.prototype.sum = function() {
+	return this.kor + this.eng + this.math
+}
+Score.prototype.aver = function() {
+	return this.sum() / 3
+}
+
+Score.count = 0;
+Score.f = function() {
+	console.log("hello");
+}
+
+var s = new Score("홍길동", 100, 100, 100);
+
+console.log(s.sum())
+console.log(s.aver())
+Score.count = 100;
+Score.f();
+</script>
+</body>
+</html>

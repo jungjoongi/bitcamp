@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex04</title>
+</head>
+<body>
+<h1>객체 - 객체 생성과 초기화II</h1>
+<script>
+"use strict"
+
+
+function createScore(name, kor, eng, math, sum, aver) {
+	var obj = {
+	return{
+    	'name': name,
+    	'kor': kor,
+    	'eng': eng,
+    	'math': math,
+    	sum() {
+    		return this.kor + this.eng + this.math
+    	},
+    	aver() {
+    		return this.sum() / 3
+    	}
+	}
+}
+var scores = []; // new Array();
+scores[0] = new createScore("홍길동", 100, 100, 100);
+scores[1] = new createScore("임꺽정", 90, 90, 90);
+scores[2] = new createScore("유관순", 80, 80, 80);
+
+scores[2].kor = 100;
+
+
+for (var score of scores) {
+	console.log(score.name, score.kor, score.eng, score.math, score.sum(), score.aver());
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex04</title>
+</head>
+<body>
+<h1>객체 - 객체 생성과 초기화II</h1>
+<script>
+"use strict"
+var score = []; // new Array();
+
+var score[0] = new Object();
+score[0].name = "홍길동";
+score[0].kor = 100;
+score[0].eng = 100;
+score[0].math = 100;
+score[0].sum = score[0].kor + score[0].eng + score[0].math;
+score[0].aver = score[0].sum / 3;
+
+score[1] = new Object();
+score[1].name = "임꺽정";
+score[1].kor = 90;
+score[1].eng = 90;
+score[1].math = 90;
+score[1].sum = score[1].kor + score[1].eng + score[1].math;
+score[1].aver = s2.sum / 3;
+
+score[2] = new Object();
+score[2].name = "유관순";
+score[2].kor = 80;
+score[2].eng = 80;
+score[2].math = 80;
+score[2].sum = score[2].kor + score[2].eng + score[2].math;
+score[2].aver = score[2].sum / 3;
+
+for (var score of scores) {
+	console.log(score.name, score.kor, score.eng, score.math, score.sum, score.aver);
+}
+</script>
+</body>
+</html>

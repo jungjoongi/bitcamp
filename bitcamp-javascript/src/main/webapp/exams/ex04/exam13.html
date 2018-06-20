@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex04</title>
+</head>
+<body>
+<h1>객체 - 인스턴스 함수를 공유하는 방법</h1>
+<script>
+"use strict"
+
+
+function Score(name, kor, eng, math) {
+	this.getName = function() {return name}
+	this.setName = function(n) {name = n}
+	
+	this.getKor = function() {return kor}
+	this.setKor = function(k) {kor = k}
+	
+	this.getEng = function() {return eng}
+	this.setEng = function(k) {eng = e}
+	
+	this.getMath = function() {return math}
+	this.setMath = function(k) {math = m}
+	
+	this.sum = function() {
+    	return kor + eng + math
+	}
+	this.aver = function() {
+		return this.sum() / 3
+	}
+}
+
+var s1 = new Score("홍길동", 100, 100, 100);
+console.log(s1.name, s1.getName(), s1.sum(), s1.aver());
+s1.setName("임꺽정");
+s1.setKor(70)
+console.log(s1.name, s1.getName(), s1.sum(), s1.aver());
+
+</script>
+</body>
+</html>
