@@ -5,9 +5,10 @@
 <title>ex04</title>
 </head>
 <body>
-<h1>객체 - 객체 생성과 초기화II</h1>
+<h1>객체 - constructor와 생성자</h1>
 <script>
 "use strict"
+// 자바스크립트 객체는 자신을 초기화시킨 생성자 정보를 갖고 있다.
 
 function Score(name, kor, eng, math) {
 	this.name = name;
@@ -16,10 +17,10 @@ function Score(name, kor, eng, math) {
 	this.math = math;
 }
 
-function Member(id, pwd){
-    this.id = id;
-    this.pwd = pwd;
-}
+function Member(id, pwd) {
+	this.id = id;
+	this.pwd = pwd;
+} 
 
 function Board(title, content) {
 	this.title = title;
@@ -27,17 +28,29 @@ function Board(title, content) {
 }
 
 var obj1 = new Score("홍길동", 100, 100, 100);
-var obj2 = new Member("hong", 1111);
+var obj2 = new Member("hong", "1111");
 var obj3 = new Board("제목", "내용");
 
 console.log(obj1);
 console.log(obj2);
 console.log(obj3);
 
-console.log(obj1.constructor.name);
-console.log(obj2.constructor.name);
-console.log(obj3.constructor.name);
+// 객체를 초기화시킨 생성자를 알아내기
+// => constructor 프로퍼티를 사용하라!
+console.log(obj1.constructor)
+console.log(obj2.constructor)
+console.log(obj3.constructor)
+
+// 생성자의 이름?
+console.log(obj1.constructor.name)
+console.log(obj2.constructor.name)
+console.log(obj3.constructor.name)
 
 </script>
 </body>
 </html>
+
+
+
+
+
