@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex05</title>
+</head>
+<body>
+<h1>이벤트 - 리스너 실행순서</h1>
+<button id="btn1" onclick="btn1Click(event)">버튼1</button><br>
+<script>
+"use strict"
+
+function btn1Click(e) {
+	console.log(
+			event.altKey, event.ctrlKey, event.Butten, 
+			event.offsetX, event.offsetY,
+			event.clientX, event.clientY,
+			event.screenX, event.screenY)
+} 
+
+</script>
+</body>
+</html>
+
+
+
+
+

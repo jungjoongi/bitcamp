@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>함수 - 익명함수와 호출</h1>
+<script>
+// 익명함수를 정의하는 즉시 바로 호출할 수 있다.
+//
+//1) 일반적인 방법
+var f1 = function() {
+	console.log("방법1...")
+}
+f1();
+// 2) 함수 정의 즉시 호출하기
+(function() {
+	console.log("방법2...")
+})();
+</script>
+</body>
+</html>

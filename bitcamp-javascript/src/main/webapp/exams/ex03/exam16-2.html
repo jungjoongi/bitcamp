@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>자바스크립트 글로벌 함수 - Timeout</h1>
+<script>
+"use strict"
+var count = 0;
+function f1() { 
+    console.log("f1()....." + (++count));
+}
+
+// f1()함수를 5초뒤에 호출하라!
+window.setInterval(f1, 2000);
+
+</script>
+
+</body>
+</html>
+
+
+
+
+

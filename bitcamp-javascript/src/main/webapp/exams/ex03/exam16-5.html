@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex03</title>
+</head>
+<body>
+<h1>자바스크립트 글로벌 함수 - JSON.parse()</h1>
+<textarea id="ta" rows="10" cols="80"></textarea>
+<button id="btn1">실행</button>
+<script>
+"use strict"
+
+var ta = document.getElementById("ta");
+
+document.getElementById("btn1").onclick = () => {
+	var str = ta.value;
+	var obj = JSON.parse(str);
+	
+	console.log(obj);
+};
+</script>
+
+</body>
+</html>
+
+
+
+
+

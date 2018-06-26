@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ex07</title>
+</head>
+<body>
+<div id="header"></div>
+<h1>AJAX - XMLHttpRequest</h1>
+<div id="footer"></div>
+<script>
+"use strict"
+
+var header = document.querySelector("#header"),
+    footer = document.querySelector("#footer");
+    
+(function() {
+    var xhr = new XMLHttpRequest();
+	  xhr.onreadystatechange = () => {
+	        console.log("readyState=", xhr.readyState);
+	        if (xhr.readyState == 4) {
+	            if (xhr.status == 200) {
+	                header.innerHTML = xhr.responseText;
+	        }
+	    }
+	};
+    xhr.open("GET", "../../jsp/test5.jsp", true);
+    xhr.send();
+})();
+
+(function() {
+    var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = () => {
+            console.log("readyState=", xhr.readyState);
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    footer.innerHTML = xhr.responseText;
+            }
+        }
+    };
+    xhr.open("GET", "footer.html", true);
+    xhr.send();
+})();
+
+
+</script>
+</body>
+</html>
+
+
+
+
+
