@@ -10,8 +10,11 @@ function loadLoginUser() {
 			location.href = "/bitcamp-java-project/html2/auth/login.html";
 		else {
 			$("#username").text(data.id);
-			$("#logoutBtn").click(() => {
-				window.alert("okok!");
+			$("#logoutBtn").click((e) => {
+				e.preventDefault(); // 클릭했을 때 원래 하던 일이 있는데 그것을 하지 말라.
+				$.get("/bitcamp-java-project/json/auth/logout", () => {
+					location.href = "/bitcamp-java-project/html2/auth/login.html";
+				});
 			});
 		}
 	});
