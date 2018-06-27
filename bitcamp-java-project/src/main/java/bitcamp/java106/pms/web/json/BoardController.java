@@ -37,7 +37,7 @@ public class BoardController {
     @RequestMapping("list{page}")
     public Object list(
             @MatrixVariable(defaultValue="1") int pageNo,
-            @MatrixVariable(defaultValue="3") int pageSize) {
+            @MatrixVariable(defaultValue="10") int pageSize) {
                 
         return boardService.list(pageNo, pageSize);
     }
