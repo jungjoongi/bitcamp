@@ -28,25 +28,6 @@ public class BoardServiceImpl implements BoardService {
         return boardDao.selectList(params);
     }
     
-    @Override
-    public Board get(int no) {
-        return boardDao.selectOne(no);
-    }
-    
-    @Override
-    public int add(Board board) {
-        return boardDao.insert(board);
-    }
-    
-    @Override
-    public int update(Board board) {
-        return boardDao.update(board);
-    }
-    
-    @Override
-    public int delete(int no) {
-        return boardDao.delete(no);
-    }
 }
 
 //ver 53 - 클래스 추가

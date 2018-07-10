@@ -1,16 +1,9 @@
 package bitcamp.java106.pms.web.json;
 
-import java.util.Map;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.MatrixVariable;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import bitcamp.java106.pms.domain.Board;
 import bitcamp.java106.pms.service.BoardService;
 
 @RestController
@@ -22,17 +15,6 @@ public class BoardController {
     public BoardController(BoardService boardService) {
         this.boardService = boardService;
     }
-
-    @RequestMapping("add")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void add(Board board) throws Exception {
-        boardService.add(board);
-    }
-    
-    @RequestMapping("delete")
-    public void delete(@RequestParam("no") int no) throws Exception {
-        boardService.delete(no);
-    }
     
     @RequestMapping("list{page}")
     public Object list(
@@ -42,19 +24,6 @@ public class BoardController {
         return boardService.list(pageNo, pageSize);
     }
     
-    @RequestMapping("update")
-    @ResponseStatus(HttpStatus.OK)
-    public void update(Board board) throws Exception {
-        boardService.update(board);
-    }
-    
-    @RequestMapping("{no}")
-    public Board view(
-            @PathVariable int no, 
-            Map<String,Object> map) throws Exception {
-        
-        return boardService.get(no);
-    }
 
 }
 

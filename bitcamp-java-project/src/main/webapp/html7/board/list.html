@@ -33,20 +33,12 @@
 <tr>
 {{/each}}
 </script>
-
+<script src="../js/common.js"></script>
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../header.js"></script>
-<script>
+<script src="list.js">
 
-var trTemplateSrc = $("#tr-template").html();
-
-var templateFn = Handlebars.compile(trTemplateSrc);
-
-
-$.getJSON("../../json/board/list", (data) => {
-	$(tableBody).html(templateFn({list:data}))
-});
 /*
 $.ajax("../../json/board/list", {
     dataType: "json",

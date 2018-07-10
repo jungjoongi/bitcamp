@@ -25,21 +25,6 @@ public class BoardController {
     public void form() {
     }
     
-    @RequestMapping("add")
-    public String add(Board board) throws Exception {
-        boardService.add(board);
-        return "redirect:list";
-    }
-    
-    @RequestMapping("delete")
-    public String delete(@RequestParam("no") int no) throws Exception {
-        
-        int count = boardService.delete(no);
-        if (count == 0) {
-            throw new Exception("해당 게시물이 없습니다.");
-        }
-        return "redirect:list";
-    }
     
     @RequestMapping("list{page}")
     public void list(
@@ -50,29 +35,6 @@ public class BoardController {
         map.put("list", boardService.list(pageNo, pageSize));
     }
     
-    @RequestMapping("update")
-    public String update(Board board) throws Exception {
-        
-        int count = boardService.update(board);
-        if (count == 0) {
-            throw new Exception("해당 게시물이 존재하지 않습니다.");
-        } 
-        return "redirect:list";
-    }
-    
-    @RequestMapping("{no}")
-    public String view(
-            @PathVariable int no, 
-            Map<String,Object> map) throws Exception {
-        
-        Board board = boardService.get(no);
-        if (board == null) {
-            throw new Exception("유효하지 않은 게시물 번호입니다.");
-        }
-        map.put("board", board);
-        return "board/view";
-    }
-
 }
 
 //ver 53 - DAO 대신 Service 객체 사용
