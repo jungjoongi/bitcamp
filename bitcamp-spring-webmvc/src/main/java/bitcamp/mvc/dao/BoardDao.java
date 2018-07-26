@@ -63,8 +63,6 @@ public class BoardDao {
     }
     
     public List<Board> selectList() {
-
-        
         return list;
     }
 }
