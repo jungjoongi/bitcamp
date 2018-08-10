@@ -12,7 +12,7 @@ public class Exam04_5 {
         c = true;
         cpp = false;
         java = true;
-        jp = false;
+        js = false;
         python = true;
         php = false;
         html = true;
