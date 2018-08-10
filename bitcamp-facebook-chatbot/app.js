@@ -39,7 +39,7 @@ https.createServer(options, app).listen(1337, () => {
 
 var options = {
 	key : fs.readFileSync('/home/ec2-user/custom.key'),
-	cert: fs.readFilesSync('/home/ec2-user/www_jungjoongi_com.crt')
+	cert: fs.readFileSync('/home/ec2-user/www_jungjoongi_com.crt')
 }
 
 // Accepts POST requests at /webhook endpoint
