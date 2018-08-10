@@ -31,16 +31,16 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
+var options = {
+		key : fs.readFileSync('/home/ec2-user/custom.key'),
+		cert: fs.readFileSync('/home/ec2-user/www_jungjoongi_com.crt')
+}
 // Sets server port and logs message on success
 //app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 https.createServer(options, app).listen(1337, () => {
 	console.log('webhook is listening')
 })
 
-var options = {
-	key : fs.readFileSync('/home/ec2-user/custom.key'),
-	cert: fs.readFileSync('/home/ec2-user/www_jungjoongi_com.crt')
-}
 
 // Accepts POST requests at /webhook endpoint
 app.post('/webhook', (req, res) => {  
