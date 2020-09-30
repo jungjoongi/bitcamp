@@ -1,3 +1,120 @@
-# bitcamp
-비트캠프 강의 소스!!
+# JAVA Step by Step 연습
 
+
+## Java Web프로그래밍을 위한 학습 및 예제
+> 목표 : Java문법을 익히며 웹프로그래밍의 역사와 변화과정을 학습하고 JAVA 웹 어플리케이션에 이해를 높이고 스스로 구축및 디버깅하는 능력을 가진다.
+
+## 2. 과정
+- ### java 도구준비
+---------------------
+- ### java 문법
+  - 기초문법
+  - 응용문법
+---------------------
+- ### spring MVC 패턴
+    - JSON 응답하기
+    - view resolver 다루기 
+    - 페이지 컨트롤러의 요청 핸들러를 정의하는 방법
+    - 프론트 컨트롤러가 사용할 IoC 컨테이너를 자바로 설정하기
+    - 설정 클래스를 사용하여 프론트 컨트롤러 설정
+    - 스프링 설정 파일의 경로 지정하기
+    - ContextLoaderListener 사용
+    - 멀티 프론트 컨트롤러 설정
+    - 프론트 컨트롤러 설정
+---------------------
+- ### java project
+    - src01 - 프로젝트 폴더 준비
+    - src02 - 컴파일과 실행
+    - src03 - 키보드 입력 과 변수
+    - src04 - 클래스와 배열
+    - src05 - 문법의 활용
+    - src06 - 메서드 적용(리팩토링)
+    - src07 - 유지보수 경험
+    - src08 - 리팩토링(메서드 활용)
+    - src09 - 리팩토링(클래스 활용)
+    - src10 - 리팩토링(facade 설계 기법 응용)
+    - src11 - 인스턴스 변수와 인스턴스 메서드의 활용(리팩토링)문법의 활용
+    - src12 - 생성자 도입(리팩토링)
+    - src13 - 날짜 값을 다루는 java.sql.Date 클래스 적용(리팩토링)
+    - src14 - DAO 클래스 분리(리팩토링)
+    - src15 - 팀 멤버 관리 기능 추가
+    - src16 - 캡슐화 적용
+    - src17 - 팀 작업을 관리할 수 있는 CRUD 기능 추가
+    - src18 - 컬렉션 클래스 적용
+    - src19 - 자바에서 제공하는 컬렉션 클래스를 적용하라. 또한 제넥릭을 사용하라!
+    - src20 - 수업 정보를 관리할 수 있는 CRUD 기능 추가
+    - src21 - 컨트롤러에 인터페이스 적용
+    - src22 - DAO에 대해 geralization을 적용하라!
+    - src23 - IoC 컨테이너를 적용하라!
+    - src24 - File I/O를 적용하여 데이터를 보관하라!
+    - src25 - 예외 처리 문법을 적용하여 예외가 발생하더라도 시스템을 멈추지 말라!
+    - src26 - Command 디자인 패턴을 적용하여 명령어 단위로 클래스를 쪼개라!
+    - src27 - serialize/deserialize 기법을 사용하여 객체 데이터를 관리하라!
+    - src28 - 소켓 프로그래밍을 적용하여 Client/Server 환경을 구축하라!
+    - src29 - HTTP 프로토콜 적용
+    - src30 - 멀티스레드 적용
+    - src31 - DAO에 JDBC 적용
+    - src32 - DB 커넥션 풀을 적용하여 DB 연결 객체를 효율적으로 관리하라.
+    - src33 - Data Persistence Framework인 Mybatis를 적용하라!
+    - src34 - 테이블에 Foreign Key 적용하기
+    - src35 - Spring 프레임워크의 IoC 컨테이너 적용
+    - src36 - Tomcat 서블릿 컨테이너 적용
+    - src37 - 서블릿 기술 적용
+    - src38 - refresh, redirect 기술 적용
+    - src39 - forward, include 기술 적용
+    - src40 - Filter, Listener 기술 적용
+    - src41 - 쿠키와 세션 기술 적용
+    - src42 - JSP 적용
+    - src43 - JSP 전용 태그 적용
+    - src44 - EL과 JSTL 적용
+    - src45 - Facade 패턴을 적용하여 Front Controller를 구현한다.
+    - src46 - 페이지 컨트롤러를 POJO로 변경한다.
+    - src47 - PageController 인터페이스 대신 애노테이션을 사용하여 호출할 메서드를 지정하기
+    - src48 - CRUD 페이지 컨트롤러들을 한 개의 클래스로 묶기
+    - src49 - 요청 핸들러의 파라미터 값을 자동 주입하기
+    - src50 - mybatis와 Spring IoC 컨테이너 연동하기
+    - src51 - Spring WebMVC 기본 적용
+    - src52 - Spring WebMVC 기타 설정
+    - src53 - 서비스 컴포넌트 적용
+    - src54 - 트랜잭션 적용
+    - src55 - AJAX를 이용하여 Front-End와 Back-End를 분리한다.
+---------------------
+- ### spring IOC
+    - Spring IOC 에 대한 개념 및 예제
+---------------------
+- ### DB 모델링
+  - 논리모델
+    - 엔티티 식별 및 속성 식별
+    - 주 키 선정(Primary Key; PK)
+    - 제1정규화
+    - 제2정규화
+    - 제3정규화
+    - 제4정규화
+    - 제5정규화
+    - 다 대 다 관계의 해소
+    - 포함 관계 및 배타적 관계 추가
+    - 관계의 차수 지정
+    - 유니크(Unique) 컬럼 지정
+    - null 허용 여부 지정
+    - 인덱스 컬럼 지정
+  - 물리모델
+    - DBMS에 맞춰서 테이블명과 컬럼명을 설정한다.
+    - 도메인(domain) 정의 및 적용
+    - 번호가 자동 증가하는 컬럼을 지정
+    - 포워드 엔지니어링(forward engineering)
+  - 관계: 부모 테이블과 자식 테이블
+    - 부모 테이블
+    - 자식 테이블
+    - 외부키(Foreign Key; FK)
+  - 식별 관계와 비식별 관계
+    - 비식별 관계(non-identifying)
+    - 식별 관계(identifying)
+---------------------
+### 기타
+- Facebook 메신저 쳇봇 연동
+- Spring IOC
+- Web
+- Javascript
+- gradle
+- groovy
+- sql
